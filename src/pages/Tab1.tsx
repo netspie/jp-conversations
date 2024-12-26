@@ -1,0 +1,223 @@
+import { IonContent, IonPage } from "@ionic/react";
+import Dialogue from "../components/Dialogue";
+import { DialogueDTO } from "../useCases/DialogueDTO";
+
+const Tab1: React.FC = () => {
+  return (
+    <IonPage>
+      <IonContent fullscreen>
+        <div className="flex flex-col text-center justify-center items-center p-4 gap-4">
+          <div
+            className="p-8 bg-pink-700 w-full
+           text-white"
+          >
+            <h1 className="text-3xl font-bold uppercase">
+              Japanese Conversations
+            </h1>
+          </div>
+          <div className="p-8 bg-pink-100 w-full text-black">
+            <p className="uppercase">Welcome to Japanese Conversations!</p>
+            <p className="font-bold">
+              Get everyday real life japanese dialogue and learn.
+            </p>
+            <p className="">
+              Upgrade for <span className="font-bold uppercase">premium</span>{" "}
+              at anytime and get up to <strong>5</strong> dialogues a day!
+              <span className="font-bold uppercase"> Everyday!</span>
+            </p>
+          </div>
+          <div className="w-full pt-4 md:px-24 lg:px-48 xl:px-72 2xl:px-96">
+            {/* <DeckList></DeckList> */}
+            <Dialogue content={dialogue} />
+          </div>
+        </div>
+      </IonContent>
+    </IonPage>
+  );
+};
+
+const dialogue: DialogueDTO = {
+  id: "1",
+  name: "Aki's Preparation for Soccer Match",
+  description:
+    "A dialogue where Aki's mother urges him to hurry up and prepare for his soccer match.",
+  phrases: [
+    {
+      speaker: [
+        { characters: [{ value: "アキ" }] },
+        { characters: [{ value: "の" }] },
+        {
+          characters: [{ value: "母", kanaWriting: "はは" }],
+        },
+      ],
+      content: [
+        { characters: [{ value: "も" }, { value: "う" }] },
+        {
+          characters: [
+            { value: "試", kanaWriting: "し" },
+            { value: "合", kanaWriting: "あい" },
+          ],
+        },
+        {
+          characters: [
+            { value: "始", kanaWriting: "はじ" },
+            { value: "ま" },
+            { value: "る" },
+          ],
+        },
+        { characters: [{ value: "よ" }] },
+        {
+          characters: [
+            { value: "急", kanaWriting: "いそ" },
+            { value: "い" },
+            { value: "で" },
+          ],
+        },
+        {
+          characters: [
+            { value: "準", kanaWriting: "じゅん" },
+            { value: "備", kanaWriting: "び" },
+          ],
+        },
+        {
+          characters: [{ value: "し" }, { value: "て" }],
+        },
+        {
+          characters: [
+            { value: "急", kanaWriting: "いそ" },
+            { value: "い" },
+            { value: "で" },
+          ],
+        },
+        { characters: [{ value: "。" }] },
+      ],
+      words: [],
+    },
+    {
+      speaker: [{ characters: [{ value: "ア" }, { value: "キ" }] }],
+      content: [
+        { characters: [{ value: "あっ" }] },
+        { characters: [{ value: "、" }] },
+        {
+          characters: [
+            { value: "分", kanaWriting: "わ" },
+            { value: "か" },
+            { value: "っ" },
+            { value: "た" },
+          ],
+        },
+        { characters: [{ value: "す" }, { value: "ぐ" }] },
+        { characters: [{ value: "に" }] },
+        { characters: [{ value: "行", kanaWriting: "い" }, { value: "く" }] },
+        { characters: [{ value: "よ" }] },
+        { characters: [{ value: "。" }] },
+      ],
+      words: [],
+    },
+    {
+      speaker: [
+        { characters: [{ value: "ア" }, { value: "キ" }] },
+        { characters: [{ value: "の" }] },
+        {
+          characters: [{ value: "母", kanaWriting: "はは" }],
+        },
+      ],
+      content: [
+        { characters: [{ value: "早", kanaWriting: "はや" }, { value: "く" }] },
+        { characters: [{ value: "し" }, { value: "ない" }] },
+        { characters: [{ value: "と" }] },
+        {
+          characters: [
+            { value: "遅", kanaWriting: "おく" },
+            { value: "れ" },
+            { value: "る" },
+          ],
+        },
+        { characters: [{ value: "よ" }] },
+        { characters: [{ value: "。" }] },
+      ],
+      words: [],
+    },
+    {
+      speaker: [{ characters: [{ value: "ア" }, { value: "キ" }] }],
+      content: [
+        {
+          characters: [
+            { value: "バ", kanaWriting: "ば" },
+            { value: "ッ" },
+            { value: "グ" },
+          ],
+        },
+        { characters: [{ value: "は" }] },
+        { characters: [{ value: "ど" }, { value: "こ" }] },
+        { characters: [{ value: "だ" }, { value: "っ" }, { value: "け" }] },
+        { characters: [{ value: "あ" }] },
+        {
+          characters: [
+            { value: "見", kanaWriting: "み" },
+            { value: "つ" },
+            { value: "け" },
+            { value: "た" },
+          ],
+        },
+        { characters: [{ value: "。" }] },
+      ],
+      words: [],
+    },
+    {
+      speaker: [
+        { characters: [{ value: "ア" }, { value: "キ" }] },
+        { characters: [{ value: "の" }] },
+        {
+          characters: [{ value: "母", kanaWriting: "はは" }],
+        },
+      ],
+      content: [
+        { characters: [{ value: "靴", kanaWriting: "くつ" }] },
+        { characters: [{ value: "は" }] },
+        { characters: [{ value: "ちゃ" }, { value: "ん" }, { value: "と" }] },
+        {
+          characters: [
+            { value: "履", kanaWriting: "は" },
+            { value: "い" },
+            { value: "た" },
+          ],
+        },
+        { characters: [{ value: "さ" }, { value: "あ" }] },
+        {
+          characters: [
+            { value: "出", kanaWriting: "しゅ" },
+            { value: "発", kanaWriting: "っぱつ" },
+          ],
+        },
+        { characters: [{ value: "よ" }] },
+        { characters: [{ value: "。" }] },
+      ],
+      words: [],
+    },
+    {
+      speaker: [{ characters: [{ value: "ア" }, { value: "キ" }] }],
+      content: [
+        { characters: [{ value: "う" }, { value: "ん" }] },
+        {
+          characters: [
+            { value: "準", kanaWriting: "じゅん" },
+            { value: "備", kanaWriting: "び" },
+          ],
+        },
+        { characters: [{ value: "で" }, { value: "き" }, { value: "た" }] },
+        {
+          characters: [
+            { value: "行", kanaWriting: "い" },
+            { value: "こ" },
+            { value: "う" },
+          ],
+        },
+        { characters: [{ value: "。" }] },
+      ],
+      words: [],
+    },
+  ],
+};
+
+export default Tab1;
