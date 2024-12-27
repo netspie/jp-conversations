@@ -692,6 +692,9 @@ video {
 .self-end {
   align-self: flex-end;
 }
+.justify-self-end {
+  justify-self: end;
+}
 .rounded {
   border-radius: 0.25rem;
 }
@@ -972,6 +975,10 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+.text-neutral-600 {
+  --tw-text-opacity: 1;
+  color: rgb(82 82 82 / var(--tw-text-opacity, 1));
 }
 .underline {
   text-decoration-line: underline;

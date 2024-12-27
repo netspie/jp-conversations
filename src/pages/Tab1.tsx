@@ -36,20 +36,36 @@ const Tab1: React.FC = () => {
   );
 };
 
+// Dialogue:
+// アキの母：もう、試合始まるよ！急いで準備して！
+// アキ：あっ、わかった！すぐに行くよ！
+// アキの母：早くしないと遅れるよ！
+// アキ：バッグはどこだっけ？あ、見つけた！
+// アキの母：靴はちゃんと履いた？さあ、出発よ！
+// アキ：うん、準備できた！行こう！
+
 const dialogue: DialogueDTO = {
   id: "1",
   name: "Aki's Preparation for Soccer Match",
   description:
     "A dialogue where Aki's mother urges him to hurry up and prepare for his soccer match.",
-  phrases: [
+  speakers: [
     {
-      speaker: [
-        { characters: [{ value: "アキ" }] },
+      words: [
+        { characters: [{ value: "ア" }, { value: "キ" }] },
         { characters: [{ value: "の" }] },
         {
           characters: [{ value: "母", kanaWriting: "はは" }],
         },
       ],
+    },
+    {
+      words: [{ characters: [{ value: "ア" }, { value: "キ" }] }],
+    },
+  ],
+  phrases: [
+    {
+      speakerIndex: 0,
       content: [
         { characters: [{ value: "も" }, { value: "う" }] },
         {
@@ -94,7 +110,7 @@ const dialogue: DialogueDTO = {
       words: [],
     },
     {
-      speaker: [{ characters: [{ value: "ア" }, { value: "キ" }] }],
+      speakerIndex: 1,
       content: [
         { characters: [{ value: "あっ" }] },
         { characters: [{ value: "、" }] },
@@ -115,13 +131,7 @@ const dialogue: DialogueDTO = {
       words: [],
     },
     {
-      speaker: [
-        { characters: [{ value: "ア" }, { value: "キ" }] },
-        { characters: [{ value: "の" }] },
-        {
-          characters: [{ value: "母", kanaWriting: "はは" }],
-        },
-      ],
+      speakerIndex: 0,
       content: [
         { characters: [{ value: "早", kanaWriting: "はや" }, { value: "く" }] },
         { characters: [{ value: "し" }, { value: "ない" }] },
@@ -139,19 +149,17 @@ const dialogue: DialogueDTO = {
       words: [],
     },
     {
-      speaker: [{ characters: [{ value: "ア" }, { value: "キ" }] }],
+      speakerIndex: 1,
       content: [
         {
-          characters: [
-            { value: "バ", kanaWriting: "ば" },
-            { value: "ッ" },
-            { value: "グ" },
-          ],
+          characters: [{ value: "バ" }, { value: "ッ" }, { value: "グ" }],
         },
         { characters: [{ value: "は" }] },
         { characters: [{ value: "ど" }, { value: "こ" }] },
         { characters: [{ value: "だ" }, { value: "っ" }, { value: "け" }] },
+        { characters: [{ value: "？" }] },
         { characters: [{ value: "あ" }] },
+        { characters: [{ value: "、" }] },
         {
           characters: [
             { value: "見", kanaWriting: "み" },
@@ -160,18 +168,12 @@ const dialogue: DialogueDTO = {
             { value: "た" },
           ],
         },
-        { characters: [{ value: "。" }] },
+        { characters: [{ value: "？" }] },
       ],
       words: [],
     },
     {
-      speaker: [
-        { characters: [{ value: "ア" }, { value: "キ" }] },
-        { characters: [{ value: "の" }] },
-        {
-          characters: [{ value: "母", kanaWriting: "はは" }],
-        },
-      ],
+      speakerIndex: 0,
       content: [
         { characters: [{ value: "靴", kanaWriting: "くつ" }] },
         { characters: [{ value: "は" }] },
@@ -183,7 +185,9 @@ const dialogue: DialogueDTO = {
             { value: "た" },
           ],
         },
+        { characters: [{ value: "？" }] },
         { characters: [{ value: "さ" }, { value: "あ" }] },
+        { characters: [{ value: "、" }] },
         {
           characters: [
             { value: "出", kanaWriting: "しゅ" },
@@ -196,7 +200,7 @@ const dialogue: DialogueDTO = {
       words: [],
     },
     {
-      speaker: [{ characters: [{ value: "ア" }, { value: "キ" }] }],
+      speakerIndex: 1,
       content: [
         { characters: [{ value: "う" }, { value: "ん" }] },
         {
@@ -206,6 +210,7 @@ const dialogue: DialogueDTO = {
           ],
         },
         { characters: [{ value: "で" }, { value: "き" }, { value: "た" }] },
+        { characters: [{ value: "。" }] },
         {
           characters: [
             { value: "行", kanaWriting: "い" },
@@ -213,7 +218,7 @@ const dialogue: DialogueDTO = {
             { value: "う" },
           ],
         },
-        { characters: [{ value: "。" }] },
+        { characters: [{ value: "!" }] },
       ],
       words: [],
     },
