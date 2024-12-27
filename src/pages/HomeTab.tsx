@@ -7,20 +7,12 @@ import {
 } from "@ionic/react";
 import Dialogue from "../components/Dialogue";
 import { DialogueDTO } from "../useCases/DialogueDTO";
+import PageHeader from "./PageHeader";
 
 const HomeTab: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader className="shadow-none">
-        <IonToolbar
-          className="shadow-none"
-          style={{ "--background": "#0054e9" }}
-        >
-          <IonTitle className="text-3xl font-bold uppercase text-white text-center ">
-            Home
-          </IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <PageHeader>Home</PageHeader>
       <IonContent fullscreen className="rounded-lg">
         <div className="flex flex-col text-center justify-center items-center p-4 gap-4">
           <div className="p-8 bg-blue-100 w-full text-black rounded-lg">

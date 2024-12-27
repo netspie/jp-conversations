@@ -9,56 +9,64 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import { useState } from "react";
+import { useDialogueConfigStore } from "../store/DialogueConfigStore";
+import PageHeader from "./PageHeader";
 
 const SettingsTab: React.FC = () => {
-  const [showSpeakers, setShowSpeakers] = useState(true);
-  const [showFurigana, setShowFurigana] = useState(true);
-  const [showHiragana, setShowHiragana] = useState(true);
-  const [showTranslation, setShowTranslation] = useState(true);
+  const dialogueConfigStore = useDialogueConfigStore();
 
   const getTextFlags = () => {
-    return [showSpeakers, showFurigana, showHiragana, showTranslation];
+    return [
+      dialogueConfigStore.showSpeakers,
+      dialogueConfigStore.showFurigana,
+      dialogueConfigStore.showHiragana,
+      dialogueConfigStore.showTranslation,
+    ];
   };
 
   const setTextFlags = (value: boolean) => {
-    setShowSpeakers(value)
-    setShowFurigana(value)
-    setShowHiragana(value)
-    setShowTranslation(value)
+    dialogueConfigStore.setShowSpeakers(value);
+    dialogueConfigStore.setShowFurigana(value);
+    dialogueConfigStore.setShowHiragana(value);
+    dialogueConfigStore.setShowTranslation(value);
   };
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Tab 3</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <PageHeader>Settings</PageHeader>
       <IonContent fullscreen>
         <div className="flex flex-col w-full h-full items-center p-4">
           <div className="flex flex-col w-full gap-4">
             <IonLabel className="font-bold">Text</IonLabel>
             <IonCheckbox
-              checked={showSpeakers}
-              onIonChange={(x) => setShowSpeakers(x.detail.checked)}
+              checked={dialogueConfigStore.showSpeakers}
+              onIonChange={(x) =>
+                dialogueConfigStore.setShowSpeakers(x.detail.checked)
+              }
             >
               Speakers
             </IonCheckbox>
             <IonCheckbox
-              checked={showFurigana}
-              onIonChange={(x) => setShowFurigana(x.detail.checked)}
+              checked={dialogueConfigStore.showFurigana}
+              onIonChange={(x) =>
+                dialogueConfigStore.setShowFurigana(x.detail.checked)
+              }
             >
               Furigana
             </IonCheckbox>
             <IonCheckbox
-              checked={showHiragana}
-              onIonChange={(x) => setShowHiragana(x.detail.checked)}
+              checked={dialogueConfigStore.showHiragana}
+              onIonChange={(x) =>
+                dialogueConfigStore.setShowHiragana(x.detail.checked)
+              }
             >
               Hiragana
             </IonCheckbox>
             <IonCheckbox
-              checked={showTranslation}
-              onIonChange={(x) => setShowTranslation(x.detail.checked)}
+              checked={dialogueConfigStore.showTranslation}
+              onIonChange={(x) =>
+                dialogueConfigStore.setShowTranslation(x.detail.checked)
+              }
             >
               Translations
             </IonCheckbox>
@@ -67,7 +75,7 @@ const SettingsTab: React.FC = () => {
             <IonCheckbox
               indeterminate={isAtLeastOneButNotAllTrue(getTextFlags())}
               checked={getTextFlags().every((x) => x)}
-              onIonChange={x => setTextFlags(x.detail.checked)}
+              onIonChange={(x) => setTextFlags(x.detail.checked)}
             >
               All
             </IonCheckbox>

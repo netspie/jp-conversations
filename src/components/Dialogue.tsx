@@ -1,29 +1,25 @@
 import {
   IonButton,
-  IonCheckbox,
   IonIcon,
   IonItem,
   IonLabel,
   IonList,
   IonListHeader,
-  IonMenuToggle,
   IonText,
 } from "@ionic/react";
 import "./Dialogue.css";
 import { DialogueDTO } from "../useCases/DialogueDTO";
-import Word from "./Word";
-import { useState } from "react";
+import Word from "../views/Word";
 import { play } from "ionicons/icons";
 import ReactAudioPlayer from "react-audio-player";
+import { useDialogueConfigStore } from "../store/DialogueConfigStore";
 
 export type DialogueProps = {
   content: DialogueDTO;
 };
 
 function Dialogue(props: DialogueProps) {
-  const [showSpeakers, setShowSpeakers] = useState(true);
-  const [showFurigana, setShowFurigana] = useState(true);
-  const [showTranslation, setShowTranslation] = useState(true);
+  const dialogueConfigStore = useDialogueConfigStore()
   
   return (
     <div className="flex flex-col items-start gap-4">
@@ -51,13 +47,13 @@ function Dialogue(props: DialogueProps) {
             <div className="flex flex-col w-full">
               <div className="flex w-full">
                 <IonText className="w-full normal-case flex flex-wrap items-end">
-                  {showSpeakers && (
+                  {dialogueConfigStore.showSpeakers && (
                     <>
                       {props.content.speakers[phrase.speakerIndex].words.map(
                         (word) => (
                           <Word
                             content={word}
-                            config={{ showFurigana: showFurigana }}
+                            config={{ showFurigana: dialogueConfigStore.showFurigana }}
                           />
                         )
                       )}
@@ -65,7 +61,7 @@ function Dialogue(props: DialogueProps) {
                         content={{
                           characters: [{ value: ":", kanaWriting: "" }],
                         }}
-                        config={{ showFurigana: showFurigana }}
+                        config={{ showFurigana: dialogueConfigStore.showFurigana }}
                       />
                       <span>&nbsp;</span>
                     </>
@@ -73,7 +69,7 @@ function Dialogue(props: DialogueProps) {
                   {phrase.content.map((word) => (
                     <Word
                       content={word}
-                      config={{ showFurigana: showFurigana }}
+                      config={{ showFurigana: dialogueConfigStore.showFurigana }}
                     />
                   ))}
                 </IonText>
@@ -87,7 +83,7 @@ function Dialogue(props: DialogueProps) {
                   <IonIcon icon={play} />
                 </IonButton>
               </div>
-              {showTranslation && (
+              {dialogueConfigStore.showTranslation && (
                 <IonText className="w-full normal-case flex flex-wrap">
                   {phrase.translation}
                 </IonText>
