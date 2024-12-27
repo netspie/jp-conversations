@@ -23,7 +23,8 @@ export type DialogueProps = {
 function Dialogue(props: DialogueProps) {
   const [showSpeakers, setShowSpeakers] = useState(true);
   const [showFurigana, setShowFurigana] = useState(true);
-
+  const [showTranslation, setShowTranslation] = useState(true);
+  
   return (
     <div className="flex flex-col items-start gap-4">
       <div className="flex flex-col gap-5">
@@ -43,59 +44,55 @@ function Dialogue(props: DialogueProps) {
           <IonLabel className="font-bold uppercase text-lg text-left">
             Dialogue
           </IonLabel>
-          <div className="absolute left-0 flex w-full h-full items-center">
-            <div className="flex w-1/2"></div>
-            <div className="flex w-1/2 justify-end gap-4">
-              <IonCheckbox
-                checked={showSpeakers}
-                onIonChange={(x) => setShowSpeakers(x.detail.checked)}
-              >
-                Speakers
-              </IonCheckbox>
-              <IonCheckbox
-                checked={showFurigana}
-                onIonChange={(x) => setShowFurigana(x.detail.checked)}
-              >
-                Furigana
-              </IonCheckbox>
-            </div>
-          </div>
+          
         </IonListHeader>
         {props.content.phrases.map((phrase, index) => (
-          <IonItem key={index} className="flex">
-            <IonText className="w-full normal-case flex flex-wrap">
-              {showSpeakers && (
-                <>
-                  {props.content.speakers[phrase.speakerIndex].words.map(
-                    (word) => (
+          <IonItem key={index} style={{ '--min-height': '0'}}>
+            <div className="flex flex-col w-full">
+              <div className="flex w-full">
+                <IonText className="w-full normal-case flex flex-wrap items-end">
+                  {showSpeakers && (
+                    <>
+                      {props.content.speakers[phrase.speakerIndex].words.map(
+                        (word) => (
+                          <Word
+                            content={word}
+                            config={{ showFurigana: showFurigana }}
+                          />
+                        )
+                      )}
                       <Word
-                        content={word}
+                        content={{
+                          characters: [{ value: ":", kanaWriting: "" }],
+                        }}
                         config={{ showFurigana: showFurigana }}
                       />
-                    )
+                      <span>&nbsp;</span>
+                    </>
                   )}
-                  <Word
-                    content={{
-                      characters: [{ value: ":", kanaWriting: "" }],
-                    }}
-                    config={{ showFurigana: showFurigana }}
-                  />
-                  <span>&nbsp;</span>
-                </>
+                  {phrase.content.map((word) => (
+                    <Word
+                      content={word}
+                      config={{ showFurigana: showFurigana }}
+                    />
+                  ))}
+                </IonText>
+                <IonButton
+                  style={{
+                    "--background": "none",
+                    "--box-shadow": "none",
+                    "--color": "gray",
+                  }}
+                >
+                  <IonIcon icon={play} />
+                </IonButton>
+              </div>
+              {showTranslation && (
+                <IonText className="w-full normal-case flex flex-wrap">
+                  {phrase.translation}
+                </IonText>
               )}
-              {phrase.content.map((word) => (
-                <Word content={word} config={{ showFurigana: showFurigana }} />
-              ))}
-            </IonText>
-            <IonButton
-              style={{
-                "--background": "none",
-                "--box-shadow": "none",
-                "--color": "gray",
-              }}
-            >
-              <IonIcon icon={play} />
-            </IonButton>
+            </div>
           </IonItem>
         ))}
       </IonList>

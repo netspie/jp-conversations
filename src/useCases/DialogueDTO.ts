@@ -9,11 +9,13 @@ export type DialogueDTO = {
 export type PhraseDTO = {
   speakerIndex: number;
   content: WordDTO[];
+  translation: string;
   words: WordDefinitionDTO[];
 };
 
 export type SpeakerDTO = {
   words: WordDTO[];
+  translation: string
 };
 
 export type WordDTO = {

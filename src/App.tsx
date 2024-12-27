@@ -3,6 +3,7 @@ import {
   IonApp,
   IonButton,
   IonIcon,
+  IonItemDivider,
   IonLabel,
   IonRouterOutlet,
   IonTabBar,
@@ -11,10 +12,22 @@ import {
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { book, ellipse, grid, square, triangle } from "ionicons/icons";
-import Tab1 from "./pages/Tab1";
-import Tab2 from "./pages/Tab2";
-import Tab3 from "./pages/Tab3";
+import {
+  albums,
+  book,
+  ellipse,
+  grid,
+  home,
+  list,
+  listCircle,
+  person,
+  settings,
+  square,
+  triangle,
+} from "ionicons/icons";
+import HomeTab from "./pages/HomeTab";
+import DialoguesTab from "./pages/DialoguesTab";
+import ProfileTab from "./pages/ProfileTab";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -41,12 +54,13 @@ import "@ionic/react/css/display.css";
 
 /* import '@ionic/react/css/palettes/dark.always.css'; */
 /* import '@ionic/react/css/palettes/dark.class.css'; */
-import "@ionic/react/css/palettes/dark.system.css";
+// import "@ionic/react/css/palettes/dark.system.css";
 
 /* Theme variables */
 import "./theme/variables.css";
 import "./theme/tailwind.css";
-import "./App.css"
+import "./App.css";
+import SettingsTab from "./pages/SettingsTab";
 
 setupIonicReact();
 
@@ -54,22 +68,28 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonTabs>
-        <IonButton href="/tab1" className="hidden w-16 h-14 md:block m-0 rounded-none">
-            <IonIcon
-              slot="icon-only"
-              icon={grid}
-              className="text-gray-50 w-8 h-8"
-            />
+        <IonButton
+          href="/tab1"
+          className="hidden w-16 h-14 md:block m-0 rounded-none bg-slate-500"
+        >
+          <IonIcon
+            slot="icon-only"
+            icon={grid}
+            className="text-gray-50 w-8 h-8"
+          />
         </IonButton>
         <IonRouterOutlet className="md:left-16 px-24">
           <Route exact path="/tab1">
-            <Tab1 />
+            <HomeTab />
           </Route>
           <Route exact path="/tab2">
-            <Tab2 />
+            <DialoguesTab />
           </Route>
           <Route path="/tab3">
-            <Tab3 />
+            <ProfileTab />
+          </Route>
+          <Route path="/tab4">
+            <SettingsTab />
           </Route>
           <Route exact path="/">
             <Redirect to="/tab1" />
@@ -77,19 +97,19 @@ const App: React.FC = () => (
         </IonRouterOutlet>
         <IonTabBar
           slot="bottom"
-          className="md:mt-14 md:pt-2 md:flex-col md:w-16 md:h-full md:justify-start md:gap-1"
+          className="md:mt-14 md:pt-2 md:flex-col md:w-16 md:h-full md:justify-start md:gap-1 shadow-xl"
         >
           <IonTabButton tab="tab1" href="/tab1" className="md:max-h-14">
-            <IonIcon aria-hidden="true" icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
+            <IonIcon aria-hidden="true" icon={home} />
           </IonTabButton>
           <IonTabButton tab="tab2" href="/tab2" className="md:max-h-14">
-            <IonIcon aria-hidden="true" icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
+            <IonIcon aria-hidden="true" icon={albums} />
           </IonTabButton>
           <IonTabButton tab="tab3" href="/tab3" className="md:max-h-14">
-            <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+            <IonIcon aria-hidden="true" icon={person} />
+          </IonTabButton>
+          <IonTabButton tab="tab4" href="/tab4" className="md:max-h-14">
+            <IonIcon aria-hidden="true" icon={settings} />
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

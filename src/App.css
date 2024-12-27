@@ -1,3 +1,7 @@
 ion-button {
     --border-radius: 0;
 }
+
+ion-tab-button.tab-selected {
+    color: blue;
+}

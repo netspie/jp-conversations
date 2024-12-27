@@ -1,21 +1,29 @@
-import { IonContent, IonPage } from "@ionic/react";
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/react";
 import Dialogue from "../components/Dialogue";
 import { DialogueDTO } from "../useCases/DialogueDTO";
 
-const Tab1: React.FC = () => {
+const HomeTab: React.FC = () => {
   return (
     <IonPage>
-      <IonContent fullscreen>
+      <IonHeader className="shadow-none">
+        <IonToolbar
+          className="shadow-none"
+          style={{ "--background": "#0054e9" }}
+        >
+          <IonTitle className="text-3xl font-bold uppercase text-white text-center ">
+            Home
+          </IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent fullscreen className="rounded-lg">
         <div className="flex flex-col text-center justify-center items-center p-4 gap-4">
-          <div
-            className="p-8 bg-pink-700 w-full
-           text-white"
-          >
-            <h1 className="text-3xl font-bold uppercase">
-              Japanese Conversations
-            </h1>
-          </div>
-          <div className="p-8 bg-pink-100 w-full text-black">
+          <div className="p-8 bg-blue-100 w-full text-black rounded-lg">
             <p className="uppercase">Welcome to Japanese Conversations!</p>
             <p className="font-bold">
               Get everyday real life japanese dialogue and learn.
@@ -26,7 +34,7 @@ const Tab1: React.FC = () => {
               <span className="font-bold uppercase"> Everyday!</span>
             </p>
           </div>
-          <div className="w-full pt-4 md:px-24 lg:px-48 xl:px-72 2xl:px-96">
+          <div className="w-full pt-4 xl:px-72 2xl:px-96">
             {/* <DeckList></DeckList> */}
             <Dialogue content={dialogue} />
           </div>
@@ -58,9 +66,11 @@ const dialogue: DialogueDTO = {
           characters: [{ value: "母", kanaWriting: "はは" }],
         },
       ],
+      translation: "Aki's Mother",
     },
     {
       words: [{ characters: [{ value: "ア" }, { value: "キ" }] }],
+      translation: "Aki",
     },
   ],
   phrases: [
@@ -82,6 +92,7 @@ const dialogue: DialogueDTO = {
           ],
         },
         { characters: [{ value: "よ" }] },
+        { characters: [{ value: "！" }] },
         {
           characters: [
             { value: "急", kanaWriting: "いそ" },
@@ -98,15 +109,9 @@ const dialogue: DialogueDTO = {
         {
           characters: [{ value: "し" }, { value: "て" }],
         },
-        {
-          characters: [
-            { value: "急", kanaWriting: "いそ" },
-            { value: "い" },
-            { value: "で" },
-          ],
-        },
-        { characters: [{ value: "。" }] },
+        { characters: [{ value: "！" }] },
       ],
+      translation: "The match is about to start! Hurry up and get ready!",
       words: [],
     },
     {
@@ -128,6 +133,7 @@ const dialogue: DialogueDTO = {
         { characters: [{ value: "よ" }] },
         { characters: [{ value: "。" }] },
       ],
+      translation: "Ah, got it! I'll be there right away!",
       words: [],
     },
     {
@@ -146,6 +152,7 @@ const dialogue: DialogueDTO = {
         { characters: [{ value: "よ" }] },
         { characters: [{ value: "。" }] },
       ],
+      translation: "If you don't hurry, you'll be late!",
       words: [],
     },
     {
@@ -170,6 +177,7 @@ const dialogue: DialogueDTO = {
         },
         { characters: [{ value: "？" }] },
       ],
+      translation: "Where's my bag again? Oh, I found it!",
       words: [],
     },
     {
@@ -197,6 +205,7 @@ const dialogue: DialogueDTO = {
         { characters: [{ value: "よ" }] },
         { characters: [{ value: "。" }] },
       ],
+      translation: "Have you put your shoes on properly? Come on, let's go!",
       words: [],
     },
     {
@@ -220,9 +229,10 @@ const dialogue: DialogueDTO = {
         },
         { characters: [{ value: "!" }] },
       ],
+      translation: "Yeah, I'm ready! Let's go!",
       words: [],
     },
   ],
 };
 
-export default Tab1;
+export default HomeTab;
