@@ -19,15 +19,15 @@ export type DialogueProps = {
 };
 
 function Dialogue(props: DialogueProps) {
-  const dialogueConfigStore = useDialogueConfigStore()
-  
+  const dialogueConfigStore = useDialogueConfigStore();
+
   return (
     <div className="flex flex-col items-start gap-4">
       <div className="flex flex-col gap-5">
         <IonLabel className="font-bold uppercase text-lg text-left">
           Situation
         </IonLabel>
-        <IonText className="w-full pl-5 text-left">
+        <IonText className="w-full text-left">
           {props.content.description}
         </IonText>
       </div>
@@ -36,14 +36,16 @@ function Dialogue(props: DialogueProps) {
         lines="none"
         className="flex flex-col w-full rounded-xl bg-transparent gap-2"
       >
-        <IonListHeader className="flex flex-col items-start relative p-0">
-          <IonLabel className="font-bold uppercase text-lg text-left">
+        <IonListHeader className="flex flex-col items-start relative p-0 m-0">
+          <IonLabel
+            className="font-bold uppercase text-lg text-left h-fit"
+            style={{ margin: 0, outerHeight: 'fit-content' }}
+          >
             Dialogue
           </IonLabel>
-          
         </IonListHeader>
         {props.content.phrases.map((phrase, index) => (
-          <IonItem key={index} style={{ '--min-height': '0'}}>
+          <IonItem key={index} style={{ "--min-height": "0" }}>
             <div className="flex flex-col w-full">
               <div className="flex w-full">
                 <IonText className="w-full normal-case flex flex-wrap items-end">
@@ -53,7 +55,9 @@ function Dialogue(props: DialogueProps) {
                         (word) => (
                           <Word
                             content={word}
-                            config={{ showFurigana: dialogueConfigStore.showFurigana }}
+                            config={{
+                              showFurigana: dialogueConfigStore.showFurigana,
+                            }}
                           />
                         )
                       )}
@@ -61,7 +65,9 @@ function Dialogue(props: DialogueProps) {
                         content={{
                           characters: [{ value: ":", kanaWriting: "" }],
                         }}
-                        config={{ showFurigana: dialogueConfigStore.showFurigana }}
+                        config={{
+                          showFurigana: dialogueConfigStore.showFurigana,
+                        }}
                       />
                       <span>&nbsp;</span>
                     </>
@@ -69,7 +75,9 @@ function Dialogue(props: DialogueProps) {
                   {phrase.content.map((word) => (
                     <Word
                       content={word}
-                      config={{ showFurigana: dialogueConfigStore.showFurigana }}
+                      config={{
+                        showFurigana: dialogueConfigStore.showFurigana,
+                      }}
                     />
                   ))}
                 </IonText>
@@ -78,6 +86,9 @@ function Dialogue(props: DialogueProps) {
                     "--background": "none",
                     "--box-shadow": "none",
                     "--color": "gray",
+                    "--height": "fit-content",
+                    "--padding": "0",
+                    "--margin": "0",
                   }}
                 >
                   <IonIcon icon={play} />

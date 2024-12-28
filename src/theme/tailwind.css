@@ -610,6 +610,10 @@ video {
 .h-\[1px\] {
   height: 1px;
 }
+.h-fit {
+  height: -moz-fit-content;
+  height: fit-content;
+}
 .h-full {
   height: 100%;
 }
@@ -1015,6 +1019,9 @@ video {
 .normal-case {
   text-transform: none;
 }
+.italic {
+  font-style: italic;
+}
 .text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity, 1));
@@ -1076,6 +1083,26 @@ video {
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
+
+@font-face {
+  font-family: "Lora";
+  src: url("/fonts/Lora/Lora-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("/fonts/Lora/Lora-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+}
+
+html {
+  --ion-dynamic-font: var(--ion-default-dynamic-font);
+  --ion-font-family: 'Lora';
+}
+
 @media (min-width: 768px) {
 
   .md\:left-16 {
@@ -1118,6 +1145,7 @@ video {
     padding-top: 0.5rem;
   }
 }
+
 @media (min-width: 1280px) {
 
   .xl\:px-72 {
@@ -1125,6 +1153,7 @@ video {
     padding-right: 18rem;
   }
 }
+
 @media (min-width: 1536px) {
 
   .\32xl\:px-96 {
