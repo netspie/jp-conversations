@@ -1,0 +1,7 @@
+.h-list {
+  scrollbar-width: none; /* For Firefox */
+}
+
+.h-list::-webkit-scrollbar {
+  display: none; /* For Webkit browsers like Chrome and Safari */
+}
