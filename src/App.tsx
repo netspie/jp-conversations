@@ -75,7 +75,7 @@ const App: React.FC = () => (
       <IonTabs>
         <IonButton
           href="/tab1"
-          className="hidden w-12 h-12 md:block m-0 rounded-none bg-slate-500"
+          className="hidden w-14 h-14 md:block m-0 rounded-none bg-slate-500"
           style={{ "--background": "var(--ion-color-tertiary)" }}
         >
           <IonIcon
@@ -84,7 +84,7 @@ const App: React.FC = () => (
             className="text-gray-50 w-8 h-8"
           />
         </IonButton>
-        <IonRouterOutlet className="md:left-12">
+        <IonRouterOutlet className="md:left-14">
           <Route exact path="/tab1">
             <HomeTab />
           </Route>
@@ -103,22 +103,22 @@ const App: React.FC = () => (
         </IonRouterOutlet>
         <IonTabBar
           slot="bottom"
-          className="h-12 md:mt-12 md:pt-2 md:flex-col md:w-12 md:h-full md:justify-start md:gap-1"
+          className="h-12 md:mt-14 md:pt-2 md:flex-col md:w-14 md:h-full md:justify-start md:gap-1"
           style={{ "--background": "var(--ion-color-primary)" }}
         >
           <div
             className="absolute w-[1px] h-[60%] bg-white"
           ></div>
-          <IonTabButton tab="tab1" href="/tab1" className="flex-1 md:max-h-14">
+          <IonTabButton tab="tab1" href="/tab1" className="flex-1 md:max-h-10">
             <IonIcon aria-hidden="true" icon={homeSharp} />
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2" className="flex-1 md:max-h-14">
+          <IonTabButton tab="tab2" href="/tab2" className="flex-1 md:max-h-10">
             <IonIcon aria-hidden="true" icon={albumsSharp} />
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3" className="flex-1 md:max-h-14">
+          <IonTabButton tab="tab3" href="/tab3" className="flex-1 md:max-h-10">
             <IonIcon aria-hidden="true" icon={personSharp} />
           </IonTabButton>
-          <IonTabButton tab="tab4" href="/tab4" className="flex-1 md:max-h-14">
+          <IonTabButton tab="tab4" href="/tab4" className="flex-1 md:max-h-10">
             <IonIcon aria-hidden="true" icon={settingsSharp} />
           </IonTabButton>
         </IonTabBar>
