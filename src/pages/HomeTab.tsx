@@ -15,7 +15,7 @@ const HomeTab: React.FC = () => {
       <PageHeader>Home</PageHeader>
       <IonContent fullscreen className="rounded-lg">
         <div className="flex flex-col text-center justify-center items-center p-4 gap-4">
-          <div className="p-8 bg-blue-100 w-full text-black rounded-lg">
+          <div className="p-8  w-full text-black" style={{ 'background': 'var(--ion-color-secondary)' }}>
             <p className="uppercase">Welcome to Japanese Conversations!</p>
             <p className="font-bold">
               Get everyday real life japanese dialogue and learn.

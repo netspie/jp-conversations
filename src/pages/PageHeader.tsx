@@ -1,5 +1,4 @@
 import { IonHeader, IonTitle, IonToolbar } from "@ionic/react";
-import { ReactNode } from "react";
 
 export type PageHeaderProps = {
   children: string
@@ -7,9 +6,9 @@ export type PageHeaderProps = {
 
 const PageHeader: React.FC<PageHeaderProps> = (props) => {
   return (
-    <IonHeader className="shadow-none">
-      <IonToolbar className="shadow-none" style={{ "--background": "#0054e9" }}>
-        <IonTitle className="text-3xl font-bold uppercase text-white text-center ">
+    <IonHeader className="shadow-none h-12">
+      <IonToolbar className="flex flex-col justify-center shadow-none h-12" style={{ "--background": "var(--ion-color-primary)" }}>
+        <IonTitle className="text-3xl font-bold uppercase text-white text-center">
           {props.children}
         </IonTitle>
       </IonToolbar>

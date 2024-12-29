@@ -1,7 +1,15 @@
 ion-button {
-    --border-radius: 0;
+  --border-radius: 0;
+}
+
+ion-tab-button {
+  color: rgb(255, 222, 226);
+}
+
+ion-tab-button:hover > ion-icon {
+  color: #e795b0;
 }
 
 ion-tab-button.tab-selected {
-    color: blue;
+  color: var(--ion-color-tertiary);
 }

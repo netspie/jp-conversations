@@ -565,6 +565,9 @@ video {
 .top-1 {
   top: 0.25rem;
 }
+.left-12 {
+  left: 3rem;
+}
 .m-0 {
   margin: 0px;
 }
@@ -573,6 +576,9 @@ video {
 }
 .m-8 {
   margin: 2rem;
+}
+.mt-12 {
+  margin-top: 3rem;
 }
 .mt-14 {
   margin-top: 3.5rem;
@@ -610,6 +616,9 @@ video {
 .h-\[1px\] {
   height: 1px;
 }
+.h-\[60\%\] {
+  height: 60%;
+}
 .h-fit {
   height: -moz-fit-content;
   height: fit-content;
@@ -623,11 +632,17 @@ video {
 .min-h-0 {
   min-height: 0px;
 }
+.min-h-full {
+  min-height: 100%;
+}
 .w-1 {
   width: 0.25rem;
 }
 .w-12 {
   width: 3rem;
+}
+.w-14 {
+  width: 3.5rem;
 }
 .w-16 {
   width: 4rem;
@@ -635,11 +650,17 @@ video {
 .w-8 {
   width: 2rem;
 }
+.w-\[1px\] {
+  width: 1px;
+}
 .w-full {
   width: 100%;
 }
 .min-w-full {
   min-width: 100%;
+}
+.flex-1 {
+  flex: 1 1 0%;
 }
 .border-collapse {
   border-collapse: collapse;
@@ -683,6 +704,12 @@ video {
 }
 .justify-center {
   justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-around {
+  justify-content: space-around;
 }
 .gap-1 {
   gap: 0.25rem;
@@ -889,6 +916,10 @@ video {
 }
 .bg-transparent {
   background-color: transparent;
+}
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 .bg-yellow-400 {
   --tw-bg-opacity: 1;
@@ -1098,9 +1129,49 @@ video {
   font-style: italic;
 }
 
+@font-face {
+  font-family: "UnicaOne";
+  src: url("/fonts/UnicaOne-Regular.ttf") format("truetype");
+  font-weight: 500;
+}
+
+:root {
+  --ion-color-primary: #8b004c;
+  --ion-color-primary-rgb: 139, 0, 76;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #7a0044;
+  --ion-color-primary-tint: #9c0060;
+
+  --ion-color-secondary: #f7d4e0;
+  --ion-color-secondary-rgb: 247, 212, 224;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #e5aab4;
+  --ion-color-secondary-tint: #f8d8e3;
+
+  --ion-color-tertiary: #4a0025;  /* Darker pink (Tertiary) */
+  --ion-color-tertiary-rgb: 74, 0, 37;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #3c0020;
+  --ion-color-tertiary-tint: #5c0036;
+}
+
 html {
   --ion-dynamic-font: var(--ion-default-dynamic-font);
-  --ion-font-family: 'Lora';
+  --ion-font-family: "Lora";
+}
+
+ion-label,
+ion-title {
+  font-family: "UnicaOne";
+  text-transform: uppercase;
+}
+
+audio,
+audio::-webkit-media-controls-panel {
+  background: var(--ion-color-primary);
 }
 
 @media (min-width: 768px) {
@@ -1109,8 +1180,12 @@ html {
     left: 4rem;
   }
 
-  .md\:mt-14 {
-    margin-top: 3.5rem;
+  .md\:left-12 {
+    left: 3rem;
+  }
+
+  .md\:mt-12 {
+    margin-top: 3rem;
   }
 
   .md\:block {
@@ -1125,8 +1200,8 @@ html {
     max-height: 3.5rem;
   }
 
-  .md\:w-16 {
-    width: 4rem;
+  .md\:w-12 {
+    width: 3rem;
   }
 
   .md\:flex-col {

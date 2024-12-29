@@ -14,14 +14,19 @@ import {
 import { IonReactRouter } from "@ionic/react-router";
 import {
   albums,
+  albumsSharp,
   book,
   ellipse,
   grid,
   home,
+  homeOutline,
+  homeSharp,
   list,
   listCircle,
   person,
+  personSharp,
   settings,
+  settingsSharp,
   square,
   triangle,
 } from "ionicons/icons";
@@ -70,7 +75,8 @@ const App: React.FC = () => (
       <IonTabs>
         <IonButton
           href="/tab1"
-          className="hidden w-16 h-14 md:block m-0 rounded-none bg-slate-500"
+          className="hidden w-12 h-12 md:block m-0 rounded-none bg-slate-500"
+          style={{ "--background": "var(--ion-color-tertiary)" }}
         >
           <IonIcon
             slot="icon-only"
@@ -78,7 +84,7 @@ const App: React.FC = () => (
             className="text-gray-50 w-8 h-8"
           />
         </IonButton>
-        <IonRouterOutlet className="md:left-16 px-24">
+        <IonRouterOutlet className="md:left-12 px-24">
           <Route exact path="/tab1">
             <HomeTab />
           </Route>
@@ -97,19 +103,23 @@ const App: React.FC = () => (
         </IonRouterOutlet>
         <IonTabBar
           slot="bottom"
-          className="md:mt-14 md:pt-2 md:flex-col md:w-16 md:h-full md:justify-start md:gap-1 shadow-xl"
+          className="h-12 md:mt-12 md:pt-2 md:flex-col md:w-12 md:h-full md:justify-start md:gap-1"
+          style={{ "--background": "var(--ion-color-primary)" }}
         >
-          <IonTabButton tab="tab1" href="/tab1" className="md:max-h-14">
-            <IonIcon aria-hidden="true" icon={home} />
+          <div
+            className="absolute w-[1px] h-[60%] bg-white"
+          ></div>
+          <IonTabButton tab="tab1" href="/tab1" className="flex-1 md:max-h-14">
+            <IonIcon aria-hidden="true" icon={homeSharp} />
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2" className="md:max-h-14">
-            <IonIcon aria-hidden="true" icon={albums} />
+          <IonTabButton tab="tab2" href="/tab2" className="flex-1 md:max-h-14">
+            <IonIcon aria-hidden="true" icon={albumsSharp} />
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3" className="md:max-h-14">
-            <IonIcon aria-hidden="true" icon={person} />
+          <IonTabButton tab="tab3" href="/tab3" className="flex-1 md:max-h-14">
+            <IonIcon aria-hidden="true" icon={personSharp} />
           </IonTabButton>
-          <IonTabButton tab="tab4" href="/tab4" className="md:max-h-14">
-            <IonIcon aria-hidden="true" icon={settings} />
+          <IonTabButton tab="tab4" href="/tab4" className="flex-1 md:max-h-14">
+            <IonIcon aria-hidden="true" icon={settingsSharp} />
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

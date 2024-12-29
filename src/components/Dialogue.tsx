@@ -39,7 +39,7 @@ function Dialogue(props: DialogueProps) {
         <IonListHeader className="flex flex-col items-start relative p-0 m-0">
           <IonLabel
             className="font-bold uppercase text-lg text-left h-fit"
-            style={{ margin: 0, outerHeight: 'fit-content' }}
+            style={{ margin: 0, outerHeight: "fit-content" }}
           >
             Dialogue
           </IonLabel>
@@ -85,7 +85,7 @@ function Dialogue(props: DialogueProps) {
                   style={{
                     "--background": "none",
                     "--box-shadow": "none",
-                    "--color": "gray",
+                    "--color": "var(--ion-color-primary)",
                     "--height": "fit-content",
                     "--padding": "0",
                     "--margin": "0",
