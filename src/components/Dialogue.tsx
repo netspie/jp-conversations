@@ -23,7 +23,7 @@ function Dialogue(props: DialogueProps) {
 
   return (
     <div className="flex flex-col items-start gap-4">
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-2">
         <IonLabel className="font-bold uppercase text-lg text-left">
           Situation
         </IonLabel>

@@ -84,7 +84,7 @@ const App: React.FC = () => (
             className="text-gray-50 w-8 h-8"
           />
         </IonButton>
-        <IonRouterOutlet className="md:left-12 px-24">
+        <IonRouterOutlet className="md:left-12">
           <Route exact path="/tab1">
             <HomeTab />
           </Route>

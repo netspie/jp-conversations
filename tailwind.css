@@ -23,6 +23,8 @@
 }
 
 :root {
+  --ion-font-size-base: 16px;
+
   --ion-color-primary: #8b004c;
   --ion-color-primary-rgb: 139, 0, 76;
   --ion-color-primary-contrast: #ffffff;
@@ -48,6 +50,7 @@
 html {
   --ion-dynamic-font: var(--ion-default-dynamic-font);
   --ion-font-family: "Lora";
+  font-size: 14px;
 }
 
 ion-label,
@@ -59,4 +62,9 @@ ion-title {
 audio,
 audio::-webkit-media-controls-panel {
   background: var(--ion-color-primary);
+  height: 36px;
+}
+
+audio::-webkit-media-controls-play-button {
+  color: white;
 }

@@ -547,6 +547,9 @@ video {
 .left-0 {
   left: 0px;
 }
+.left-12 {
+  left: 3rem;
+}
 .left-16 {
   left: 4rem;
 }
@@ -564,9 +567,6 @@ video {
 }
 .top-1 {
   top: 0.25rem;
-}
-.left-12 {
-  left: 3rem;
 }
 .m-0 {
   margin: 0px;
@@ -975,6 +975,10 @@ video {
   padding-left: 12rem;
   padding-right: 12rem;
 }
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
 .px-72 {
   padding-left: 18rem;
   padding-right: 18rem;
@@ -1136,6 +1140,8 @@ video {
 }
 
 :root {
+  --ion-font-size-base: 16px;
+
   --ion-color-primary: #8b004c;
   --ion-color-primary-rgb: 139, 0, 76;
   --ion-color-primary-contrast: #ffffff;
@@ -1161,6 +1167,7 @@ video {
 html {
   --ion-dynamic-font: var(--ion-default-dynamic-font);
   --ion-font-family: "Lora";
+  font-size: 14px;
 }
 
 ion-label,
@@ -1172,13 +1179,14 @@ ion-title {
 audio,
 audio::-webkit-media-controls-panel {
   background: var(--ion-color-primary);
+  height: 36px;
+}
+
+audio::-webkit-media-controls-play-button {
+  color: white;
 }
 
 @media (min-width: 768px) {
-
-  .md\:left-16 {
-    left: 4rem;
-  }
 
   .md\:left-12 {
     left: 3rem;
@@ -1214,6 +1222,11 @@ audio::-webkit-media-controls-panel {
 
   .md\:gap-1 {
     gap: 0.25rem;
+  }
+
+  .md\:px-9 {
+    padding-left: 2.25rem;
+    padding-right: 2.25rem;
   }
 
   .md\:pt-2 {

@@ -15,7 +15,7 @@ const HomeTab: React.FC = () => {
       <PageHeader>Home</PageHeader>
       <IonContent fullscreen className="rounded-lg">
         <div className="flex flex-col text-center justify-center items-center p-4 gap-4">
-          <div className="p-8  w-full text-black" style={{ 'background': 'var(--ion-color-secondary)' }}>
+          <div className="p-8 w-full text-black" style={{ 'background': 'var(--ion-color-secondary)' }}>
             <p className="uppercase">Welcome to Japanese Conversations!</p>
             <p className="font-bold">
               Get everyday real life japanese dialogue and learn.
@@ -26,7 +26,7 @@ const HomeTab: React.FC = () => {
               <span className="font-bold uppercase"> Everyday!</span>
             </p>
           </div>
-          <div className="w-full pt-4 xl:px-72 2xl:px-96">
+          <div className="w-full pt-4 md:px-9 xl:px-72 2xl:px-96">
             {/* <DeckList></DeckList> */}
             <Dialogue content={dialogue} />
           </div>

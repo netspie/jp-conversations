@@ -6,6 +6,10 @@ ion-tab-button {
   color: rgb(255, 222, 226);
 }
 
+ion-tab-button > ion-icon {
+  height: 22px;
+}
+
 ion-tab-button:hover > ion-icon {
   color: #e795b0;
 }

@@ -37,7 +37,7 @@ const SettingsTab: React.FC = () => {
       <IonContent fullscreen>
         <div className="flex flex-col w-full h-full items-center p-4">
           <div className="flex flex-col w-full gap-4">
-            <IonLabel className="font-bold">Text</IonLabel>
+            <IonLabel className="font-bold text-lg">Text</IonLabel>
             <IonCheckbox
               checked={dialogueConfigStore.showSpeakers}
               onIonChange={(x) =>
