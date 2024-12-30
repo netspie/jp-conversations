@@ -3,7 +3,7 @@ ion-button {
 }
 
 ion-tab-button {
-  color: rgb(255, 222, 226);
+  color: var(--ion-color-secondary)
 }
 
 ion-tab-button > ion-icon {

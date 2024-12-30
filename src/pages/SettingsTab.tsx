@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import { useDialogueConfigStore } from "../store/DialogueConfigStore";
 import PageHeader from "./PageHeader";
+import PageContent from "./PageContent";
 
 const SettingsTab: React.FC = () => {
   const dialogueConfigStore = useDialogueConfigStore();
@@ -35,7 +36,7 @@ const SettingsTab: React.FC = () => {
     <IonPage>
       <PageHeader>Settings</PageHeader>
       <IonContent fullscreen>
-        <div className="flex flex-col w-full h-full items-center p-4">
+        <PageContent>
           <div className="flex flex-col w-full gap-4">
             <IonLabel className="font-bold text-lg">Text</IonLabel>
             <IonCheckbox
@@ -80,7 +81,7 @@ const SettingsTab: React.FC = () => {
               All
             </IonCheckbox>
           </div>
-        </div>
+        </PageContent>
       </IonContent>
     </IonPage>
   );

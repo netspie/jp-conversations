@@ -10,10 +10,8 @@ import { DialogueDTO } from "../useCases/DialogueDTO";
 import PageHeader from "./PageHeader";
 import "./HomeTab.css";
 import { useRef } from "react";
-import {
-  caretBackSharp,
-  caretForwardSharp,
-} from "ionicons/icons";
+import { caretBackSharp, caretForwardSharp } from "ionicons/icons";
+import PageContent from "./PageContent";
 
 const HorizontalList: React.FC = () => {
   const items = Array.from({ length: 10 }, (_, i) => `Card ${i + 1}`);
@@ -32,12 +30,16 @@ const HorizontalList: React.FC = () => {
   };
 
   return (
-    <div className="relative group" style={{ width: '100vw' }}>
+    <div className="relative group" style={{ width: "100%" }}>
       <div className="flex items-center justify-between">
         <IonButton
           onClick={scrollLeft}
           className="absolute left-0 opacity-0 translate-x-1/4 group-hover:opacity-100 bg-transparent hover:bg-none rounded-full"
-          style={{ "--background": "transparent", "--box-shadow": "none", '--border-radius': '999px' }}
+          style={{
+            "--background": "transparent",
+            "--box-shadow": "none",
+            "--border-radius": "999px",
+          }}
         >
           <IonIcon
             aria-hidden="true"
@@ -63,7 +65,11 @@ const HorizontalList: React.FC = () => {
         <IonButton
           onClick={scrollRight}
           className="absolute right-0 opacity-0 -translate-x-1/4 group-hover:opacity-100 bg-transparent hover:bg-none rounded-full"
-          style={{ "--background": "transparent", "--box-shadow": "none", '--border-radius': '999px' }}
+          style={{
+            "--background": "transparent",
+            "--box-shadow": "none",
+            "--border-radius": "999px",
+          }}
         >
           <IonIcon
             aria-hidden="true"
@@ -82,9 +88,9 @@ const HomeTab: React.FC = () => {
     <IonPage>
       <PageHeader>Home</PageHeader>
       <IonContent fullscreen className="rounded-lg">
-        <div className="flex flex-col text-center justify-center items-center p-4 gap-4">
+        <PageContent>
           <div
-            className="p-8 w-full text-black"
+            className="p-8 w-full text-black text-center"
             style={{ background: "var(--ion-color-secondary)" }}
           >
             <p className="uppercase">Welcome to Japanese Conversations!</p>
@@ -98,11 +104,9 @@ const HomeTab: React.FC = () => {
             </p>
           </div>
           <HorizontalList />
-          <div className="w-full pt-4 md:px-9 xl:px-72 2xl:px-96">
-            {/* <DeckList></DeckList> */}
-            <Dialogue content={dialogue} />
-          </div>
-        </div>
+          {/* <DeckList></DeckList> */}
+          <Dialogue content={dialogue} />
+        </PageContent>
       </IonContent>
     </IonPage>
   );
