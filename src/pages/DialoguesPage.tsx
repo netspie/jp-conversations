@@ -1,15 +1,56 @@
-import { IonContent, IonPage } from "@ionic/react";
+import {
+  IonContent,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonListHeader,
+  IonPage,
+} from "@ionic/react";
 import PageHeader from "./PageHeader";
 import { DialogueDTO } from "../useCases/DialogueDTO";
 import Dialogue from "../components/Dialogue";
 import PageContent from "./PageContent";
+import React, { ReactNode } from "react";
 
-const DialoguesTab: React.FC = () => {
+type ListHeaderProps = {
+  children: string
+}
+
+function ListHeader(props: ListHeaderProps) {
+  return (
+    <IonListHeader className="flex flex-col items-start relative p-0 m-0">
+      <IonLabel
+        className="font-bold uppercase text-lg text-left h-fit"
+        style={{ margin: 0, outerHeight: "fit-content" }}
+      >
+        {props.children}
+      </IonLabel>
+    </IonListHeader>
+  );
+}
+
+function DialogueLevel() {
+  return <div></div>;
+}
+
+function DialogueLevelList() {
+  return (
+    <IonList
+      lines="none"
+      className="flex flex-col w-full rounded-xl gap-2"
+    >
+
+    </IonList>
+  );
+}
+
+const DialoguesPage: React.FC = () => {
   return (
     <IonPage>
       <PageHeader>Dialogues</PageHeader>
       <IonContent fullscreen>
         <PageContent>
+          <DialogueLevelList />
           <Dialogue content={dialogue} />
         </PageContent>
       </IonContent>
@@ -17,7 +58,7 @@ const DialoguesTab: React.FC = () => {
   );
 };
 
-export default DialoguesTab;
+export default DialoguesPage;
 
 // Dialogue:
 // アキの母：もう、試合始まるよ！急いで準備して！

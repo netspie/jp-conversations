@@ -1,7 +1,7 @@
 import { IonContent, IonPage } from "@ionic/react";
 import PageHeader from "./PageHeader";
 
-const ProfileTab: React.FC = () => {
+const ProfilePage: React.FC = () => {
   return (
     <IonPage>
       <PageHeader>Profile</PageHeader>
@@ -10,4 +10,4 @@ const ProfileTab: React.FC = () => {
   );
 };
 
-export default ProfileTab;
+export default ProfilePage;

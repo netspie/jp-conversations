@@ -5,10 +5,8 @@ import {
   IonLabel,
   IonPage,
 } from "@ionic/react";
-import Dialogue from "../components/Dialogue";
-import { DialogueDTO } from "../useCases/DialogueDTO";
 import PageHeader from "./PageHeader";
-import "./HomeTab.css";
+import "./HomePage.css";
 import { useRef } from "react";
 import { caretBackSharp, caretForwardSharp } from "ionicons/icons";
 import PageContent from "./PageContent";
@@ -83,7 +81,7 @@ const HorizontalList: React.FC = () => {
   );
 };
 
-const HomeTab: React.FC = () => {
+const HomePage: React.FC = () => {
   return (
     <IonPage>
       <PageHeader>Home</PageHeader>
@@ -110,4 +108,4 @@ const HomeTab: React.FC = () => {
   );
 };
 
-export default HomeTab;
+export default HomePage;

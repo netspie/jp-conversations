@@ -13,7 +13,7 @@ import { useDialogueConfigStore } from "../store/DialogueConfigStore";
 import PageHeader from "./PageHeader";
 import PageContent from "./PageContent";
 
-const SettingsTab: React.FC = () => {
+const SettingsPage: React.FC = () => {
   const dialogueConfigStore = useDialogueConfigStore();
 
   const getTextFlags = () => {
@@ -102,4 +102,4 @@ function isAtLeastOneButNotAllTrue(booleans: boolean[]): boolean {
   return hasTrue && hasFalse;
 }
 
-export default SettingsTab;
+export default SettingsPage;

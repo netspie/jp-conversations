@@ -33,9 +33,9 @@ import {
   square,
   triangle,
 } from "ionicons/icons";
-import HomeTab from "./pages/HomeTab";
-import DialoguesTab from "./pages/DialoguesTab";
-import ProfileTab from "./pages/ProfileTab";
+import HomePage from "./pages/HomePage";
+import DialoguesPage from "./pages/DialoguesPage";
+import ProfilePage from "./pages/ProfilePage";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -68,7 +68,7 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import "./theme/tailwind.css";
 import "./App.css";
-import SettingsTab from "./pages/SettingsTab";
+import SettingsPage from "./pages/SettingsPage";
 
 setupIonicReact();
 
@@ -89,20 +89,20 @@ const App: React.FC = () => (
           />
         </IonButton>
         <IonRouterOutlet className="md:left-14 h-[100vh]" >
-          <Route exact path="/tab1">
-            <HomeTab />
+          <Route exact path="/home">
+            <HomePage />
           </Route>
-          <Route exact path="/tab2">
-            <DialoguesTab />
+          <Route exact path="/dialogues">
+            <DialoguesPage />
           </Route>
-          <Route path="/tab3">
-            <ProfileTab />
+          <Route path="/profile">
+            <ProfilePage />
           </Route>
-          <Route path="/tab4">
-            <SettingsTab />
+          <Route path="/settings">
+            <SettingsPage />
           </Route>
           <Route exact path="/">
-            <Redirect to="/tab1" />
+            <Redirect to="/home" />
           </Route>
         </IonRouterOutlet>
         <IonTabBar
@@ -110,18 +110,18 @@ const App: React.FC = () => (
           className="h-12 md:mt-14 md:pt-2 md:flex-col md:w-14 md:h-full md:gap-4"
         >
           <div className="absolute w-[1px] h-[60%] bg-white"></div>
-          <IonTabButton tab="tab1" href="/tab1" className="flex-1 md:max-h-10">
+          <IonTabButton tab="tab1" href="/home" className="flex-1 md:max-h-10">
             <IonIcon aria-hidden="true" icon={homeOutline} />
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2" className="flex-1 md:max-h-10">
+          <IonTabButton tab="tab2" href="/dialogues" className="flex-1 md:max-h-10">
             <IonIcon aria-hidden="true" icon={albumsOutline} />
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3" className="flex-1 md:max-h-10">
+          {/* <IonTabButton tab="tab3" href="/tab3" className="flex-1 md:max-h-10">
             <IonIcon aria-hidden="true" icon={personOutline} />
           </IonTabButton>
           <IonTabButton tab="tab4" href="/tab4" className="flex-1 md:max-h-10">
             <IonIcon aria-hidden="true" icon={settingsOutline} />
-          </IonTabButton>
+          </IonTabButton> */}
         </IonTabBar>
       </IonTabs>
     </IonReactRouter>

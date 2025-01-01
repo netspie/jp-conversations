@@ -4,6 +4,7 @@ export type DialogueDTO = {
   description: string;
   speakers: SpeakerDTO[];
   phrases: PhraseDTO[];
+  metadata?: DialogueMetadataDTO
 };
 
 export type PhraseDTO = {
@@ -30,3 +31,7 @@ export type CharacterDTO = {
   value: string;
   kanaWriting?: string;
 };
+
+export type DialogueMetadataDTO = {
+  level: number
+}

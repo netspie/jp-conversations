@@ -106,6 +106,7 @@ function Dialogue(props: DialogueProps) {
             <div className="flex flex-col w-full">
               <div className="flex w-full">
                 <IonText className="w-full normal-case flex flex-wrap items-end">
+                  {/* SPEAKERS */}
                   {dialogueConfigStore.showSpeakers && (
                     <>
                       {props.content.speakers[phrase.speakerIndex].words.map(
@@ -129,6 +130,7 @@ function Dialogue(props: DialogueProps) {
                       <span>&nbsp;</span>
                     </>
                   )}
+                  {/* PHRASE */}
                   {phrase.content.map((word) => (
                     <Word
                       content={word}
@@ -151,6 +153,7 @@ function Dialogue(props: DialogueProps) {
                   <IonIcon icon={play} />
                 </IonButton>
               </div>
+              {/* TRANSLATION */}
               {dialogueConfigStore.showTranslation && (
                 <IonText className="w-full normal-case flex flex-wrap text-sm text-gray-400 font-bold">
                   {phrase.translation}
