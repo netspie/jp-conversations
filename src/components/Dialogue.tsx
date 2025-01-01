@@ -14,6 +14,8 @@ import Word from "../views/Word";
 import { heart, information, person, play, square } from "ionicons/icons";
 import ReactAudioPlayer from "react-audio-player";
 import { useDialogueConfigStore } from "../store/DialogueConfigStore";
+import { forceUpdate } from "ionicons/dist/types/stencil-public-runtime";
+import { useState } from "react";
 
 export type DialogueProps = {
   content: DialogueDTO;
@@ -52,9 +54,10 @@ function IconCheckbox(props: IconToggleProps) {
 
 function Dialogue(props: DialogueProps) {
   const dialogueConfigStore = useDialogueConfigStore();
+  const [state, setState] = useState(false)
 
   return (
-    <div className="flex flex-col items-start gap-4">
+    <div className="flex flex-col items-start gap-4 bg-white">
       <div className="flex gap-3">
         <IconCheckbox
           icon={person}
@@ -64,7 +67,10 @@ function Dialogue(props: DialogueProps) {
         <IconCheckbox
           icon={information}
           checked={dialogueConfigStore.showExplanations}
-          onChange={dialogueConfigStore.setShowExplanations}
+          onChange={value => {
+            dialogueConfigStore.setShowExplanations(value)
+            setState(!state)
+          }}
         />
         <IconCheckbox
           character={"あ"}
@@ -78,18 +84,15 @@ function Dialogue(props: DialogueProps) {
         />
       </div>
       <div className="flex flex-col gap-2">
-        <IonLabel className="font-bold uppercase text-lg text-left">
+        <IonLabel className="font-bold uppercase text-lg text-left text-black">
           Situation
         </IonLabel>
-        <IonText className="w-full text-left">
+        <IonText className="w-full text-left text-black font-[Lora]">
           {props.content.description}
         </IonText>
       </div>
 
-      <IonList
-        lines="none"
-        className="flex flex-col w-full rounded-xl bg-transparent gap-2"
-      >
+      <IonList lines="none" className="flex flex-col w-full rounded-xl gap-2">
         <IonListHeader className="flex flex-col items-start relative p-0 m-0">
           <IonLabel
             className="font-bold uppercase text-lg text-left h-fit"
@@ -160,7 +163,9 @@ function Dialogue(props: DialogueProps) {
                     <>
                       {word.explanation && (
                         <div className="flex-col">
-                          {!dialogueConfigStore.showFurigana && (<div className="h-2"></div>)}
+                          {!dialogueConfigStore.showFurigana && (
+                            <div className="h-2"></div>
+                          )}
                           <div className="relative flex gap-2">
                             <div className="flex">
                               <div className="flex flex-col h-full mr-2">

@@ -88,7 +88,7 @@ const App: React.FC = () => (
             style={{ "color": "var(--ion-color-primary)" }}
           />
         </IonButton>
-        <IonRouterOutlet className="md:left-14">
+        <IonRouterOutlet className="md:left-14 h-[100vh]" >
           <Route exact path="/tab1">
             <HomeTab />
           </Route>
