@@ -17,6 +17,9 @@ import {
   albumsOutline,
   albumsSharp,
   book,
+  chatbox,
+  chatboxOutline,
+  diamond,
   ellipse,
   grid,
   home,
@@ -69,63 +72,95 @@ import "./theme/variables.css";
 import "./theme/tailwind.css";
 import "./App.css";
 import SettingsPage from "./pages/SettingsPage";
+import { resetNav, useNavStore } from "./store/NavStore";
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonTabs>
-        <IonButton
-          href="/tab1"
-          className="hidden w-14 h-14 md:block m-0 rounded-none bg-slate-500"
-          style={{ "--background": "white" }}
-        >
-          <IonIcon
-            slot="icon-only"
-            icon={grid}
-            className="text-gray-50 w-8 h-8"
-            style={{ "color": "var(--ion-color-primary)" }}
-          />
-        </IonButton>
-        <IonRouterOutlet className="md:left-14 h-[100vh]" >
-          <Route exact path="/home">
-            <HomePage />
-          </Route>
-          <Route exact path="/dialogues">
-            <DialoguesPage />
-          </Route>
-          <Route path="/profile">
-            <ProfilePage />
-          </Route>
-          <Route path="/settings">
-            <SettingsPage />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-        </IonRouterOutlet>
-        <IonTabBar
-          slot="bottom"
-          className="h-12 md:mt-14 md:pt-2 md:flex-col md:w-14 md:h-full md:gap-4"
-        >
-          <div className="absolute w-[1px] h-[60%] bg-white"></div>
-          <IonTabButton tab="tab1" href="/home" className="flex-1 md:max-h-10">
-            <IonIcon aria-hidden="true" icon={homeOutline} />
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/dialogues" className="flex-1 md:max-h-10">
-            <IonIcon aria-hidden="true" icon={albumsOutline} />
-          </IonTabButton>
-          {/* <IonTabButton tab="tab3" href="/tab3" className="flex-1 md:max-h-10">
+const App: React.FC = () => {
+  const navStore = useNavStore();
+
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonTabs>
+          <IonButton
+            href="/tab1"
+            className="hidden w-14 h-14 md:block m-0 rounded-none bg-transparent"
+            style={{ "--border-radius": "0" }}
+          >
+            <IonIcon
+              slot="icon-only"
+              icon={grid}
+              className="text-gray-50 w-8 h-8"
+            />
+          </IonButton>
+          <IonRouterOutlet className="md:left-14 h-[100vh]">
+            <Route exact path="/home">
+              <HomePage />
+            </Route>
+            <Route exact path="/dialogues">
+              <DialoguesPage />
+            </Route>
+            <Route path="/profile">
+              <ProfilePage />
+            </Route>
+            <Route path="/premium">
+              <SettingsPage />
+            </Route>
+            {/* <Route path="/settings">
+          </Route> */}
+            <Route exact path="/">
+              <Redirect to="/home" />
+            </Route>
+          </IonRouterOutlet>
+          <IonTabBar
+            slot="bottom"
+            className="h-12 md:mt-14 md:pt-2 md:flex-col md:w-14 md:h-full md:gap-4"
+          >
+            <div className="absolute w-[1px] h-[60%] bg-white"></div>
+            <IonTabButton
+              tab="home"
+              href="/home"
+              className="flex-1 md:max-h-10"
+              onClick={() => resetNav(navStore)}
+            >
+              <IonIcon aria-hidden="true" icon={home} />
+            </IonTabButton>
+            <IonTabButton
+              tab="dialogues"
+              href="/dialogues"
+              className="flex-1 md:max-h-10"
+              onClick={() => resetNav(navStore)}
+            >
+              <IonIcon aria-hidden="true" icon={chatbox} />
+            </IonTabButton>
+            <IonTabButton
+              tab="profile"
+              href="/profile"
+              className="flex-1 md:max-h-10"
+              onClick={() => resetNav(navStore)}
+            >
+              <IonIcon aria-hidden="true" icon={person} />
+            </IonTabButton>
+            <IonTabButton
+              tab="premium"
+              href="/premium"
+              className="flex-1 md:max-h-10"
+              onClick={() => resetNav(navStore)}
+            >
+              <IonIcon aria-hidden="true" icon={diamond} />
+            </IonTabButton>
+            {/* <IonTabButton tab="tab3" href="/tab3" className="flex-1 md:max-h-10">
             <IonIcon aria-hidden="true" icon={personOutline} />
           </IonTabButton>
           <IonTabButton tab="tab4" href="/tab4" className="flex-1 md:max-h-10">
             <IonIcon aria-hidden="true" icon={settingsOutline} />
           </IonTabButton> */}
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  </IonApp>
-);
+          </IonTabBar>
+        </IonTabs>
+      </IonReactRouter>
+    </IonApp>
+  );
+};
 
 export default App;

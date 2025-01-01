@@ -43,6 +43,20 @@
   --ion-color-tertiary-contrast-rgb: 255, 255, 255;
   --ion-color-tertiary-shade: #660000;
   --ion-color-tertiary-tint: #990000;
+
+  --ion-color-quaternary: #ffc6c6; /* Lighter Hellish Light Red (Quaternary) */
+  --ion-color-quaternary-rgb: 255, 153, 153;
+  --ion-color-quaternary-contrast: #000000;
+  --ion-color-quaternary-contrast-rgb: 0, 0, 0;
+  --ion-color-quaternary-shade: #e66b6b;
+  --ion-color-quaternary-tint: #ffb3b3;
+
+  --ion-color-premium: #ffd700; /* Gold (Premium) */
+  --ion-color-premium-rgb: 255, 215, 0;
+  --ion-color-premium-contrast: #000000;
+  --ion-color-premium-contrast-rgb: 0, 0, 0;
+  --ion-color-premium-shade: #cc9b00;
+  --ion-color-premium-tint: #ffdf66;
 }
 
 html {
@@ -52,9 +66,19 @@ html {
 }
 
 ion-label,
-ion-title {
+ion-title,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "UnicaOne";
+  --ion-font-family: "UnicaOne";
+  font-weight: bold;
   text-transform: uppercase;
+  font-size: 20px;
+
 }
 
 audio,

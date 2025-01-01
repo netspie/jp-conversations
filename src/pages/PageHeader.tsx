@@ -1,4 +1,4 @@
-import { IonHeader, IonLabel, IonTitle, IonToolbar } from "@ionic/react";
+import { IonBackButton, IonHeader, IonLabel, IonTitle, IonToolbar } from "@ionic/react";
 
 export type PageHeaderProps = {
   children: string;
@@ -18,6 +18,7 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
         className="flex flex-col justify-center shadow-none h-12 md:h-14"
         style={{ "--border-width": "0", "--background": "white" }}
       >
+         <IonBackButton></IonBackButton>
         <IonTitle className="text-3xl font-bold uppercase text-center">
           {props.children}
         </IonTitle>

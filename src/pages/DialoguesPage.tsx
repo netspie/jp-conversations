@@ -1,313 +1,155 @@
 import {
+  IonBackButton,
+  IonButton,
   IonContent,
+  IonIcon,
   IonItem,
   IonLabel,
   IonList,
-  IonListHeader,
+  IonNav,
+  IonNavLink,
   IonPage,
 } from "@ionic/react";
 import PageHeader from "./PageHeader";
-import { DialogueDTO } from "../useCases/DialogueDTO";
-import Dialogue from "../components/Dialogue";
 import PageContent from "./PageContent";
-import React, { ReactNode } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { DialogueSignatureDTO } from "../useCases/DialogueSignatureDTO";
+import { Icon } from "ionicons/dist/types/components/icon/icon";
+import { diamond, lockClosed } from "ionicons/icons";
+import SettingsPage from "./SettingsPage";
+import { DialoguePage } from "./DialoguePage";
+import { useNavStore } from "../store/NavStore";
 
-type ListHeaderProps = {
-  children: string
-}
+type DialogueSignatureProps = {
+  content: DialogueSignatureDTO;
+};
 
-function ListHeader(props: ListHeaderProps) {
+function DialogueSignature(props: DialogueSignatureProps) {
   return (
-    <IonListHeader className="flex flex-col items-start relative p-0 m-0">
-      <IonLabel
-        className="font-bold uppercase text-lg text-left h-fit"
-        style={{ margin: 0, outerHeight: "fit-content" }}
+    <div className="flex relative w-full">
+      <IonNavLink
+        class="size-full rounded-md shadow-md"
+        routerDirection="forward"
+        component={() => (
+          <DialoguePage dialogueId="123e4567-e89b-12d3-a456-426614174000" />
+        )}
+        style={{ background: "var(--ion-color-quaternary)" }}
       >
-        {props.children}
-      </IonLabel>
-    </IonListHeader>
+        <div className="flex flex-col gap-2 p-4">
+          <IonLabel
+            style={{ color: "var(--ion-color-primary)", "font-size": "18px" }}
+          >
+            {props.content.name}
+          </IonLabel>
+          <IonLabel
+            style={{
+              "--color": "var(--ion-color-tertiary)",
+              "font-size": "12px",
+            }}
+          >
+            {props.content.wordsCount} Words
+          </IonLabel>
+        </div>
+      </IonNavLink>
+      {!props.content.active && (
+        <div className="absolute size-full flex justify-center items-center bg-[rgba(255,255,255,0.7)]">
+          <IonButton>
+            <IonIcon
+              className="p-2"
+              slot="icon-only"
+              icon={diamond}
+              style={{ "min-height": "40px", "min-width": "40px" }}
+            />
+          </IonButton>
+          {/* <IonButton>
+            <IonIcon
+              icon={diamond}
+              className="m-auto"
+              size="large"
+              color="primary"
+             
+            />
+          </IonButton> */}
+        </div>
+      )}
+    </div>
   );
 }
 
-function DialogueLevel() {
-  return <div></div>;
-}
+function DialogueList() {
+  const [dialogues, setDialogues] = useState<DialogueSignatureDTO[]>();
 
-function DialogueLevelList() {
+  useEffect(() => {
+    loadDialoguesSignatures().then(setDialogues);
+  }, []);
+
+  async function loadDialoguesSignatures(): Promise<DialogueSignatureDTO[]> {
+    const response = await fetch("/data/dialogues/_dialogues.json");
+    return await response.json();
+  }
+
   return (
-    <IonList
-      lines="none"
-      className="flex flex-col w-full rounded-xl gap-2"
-    >
-
-    </IonList>
+    <div>
+      <div>
+        <IonLabel
+          style={{
+            "font-size": "16px",
+          }}
+        >
+          5/10 Free
+        </IonLabel>
+      </div>
+      <IonList lines="none" className="flex flex-col w-full rounded-xl gap-2">
+        {dialogues?.map((dialogue, i) => (
+          <IonItem
+            key={i}
+            style={{
+              "--padding-start": "0",
+              "--inner-padding-end": "0",
+              "--margin": "0",
+              "--min-height": "0",
+            }}
+            className="p-0 m-0"
+          >
+            <DialogueSignature content={dialogue} />
+          </IonItem>
+        ))}
+      </IonList>
+    </div>
   );
 }
 
 const DialoguesPage: React.FC = () => {
+  const navRef = useRef<HTMLIonNavElement>(null);
+
+  const navStore = useNavStore();
+
+  useEffect(() => {
+    navStore.setNav(navRef.current ? navRef.current : undefined);
+  }, [navRef]);
+
   return (
-    <IonPage>
-      <PageHeader>Dialogues</PageHeader>
-      <IonContent fullscreen>
-        <PageContent>
-          <DialogueLevelList />
-          <Dialogue content={dialogue} />
-        </PageContent>
-      </IonContent>
-    </IonPage>
+    <IonNav
+      ref={navRef}
+      root={() => (
+        <IonPage>
+          <PageHeader>Dialogues</PageHeader>
+          <IonContent fullscreen>
+            <PageContent>
+              <DialogueList />
+              {/* <Dialogue content={dialogue} /> */}
+            </PageContent>
+          </IonContent>
+        </IonPage>
+      )}
+    ></IonNav>
   );
 };
 
 export default DialoguesPage;
 
-// Dialogue:
-// アキの母：もう、試合始まるよ！急いで準備して！
-// アキ：あっ、わかった！すぐに行くよ！
-// アキの母：早くしないと遅れるよ！
-// アキ：バッグはどこだっけ？あ、見つけた！
-// アキの母：靴はちゃんと履いた？さあ、出発よ！
-// アキ：うん、準備できた！行こう！
-const dialogue: DialogueDTO = {
-  id: "{123e4567-e89b-12d3-a456-426614174000}",
-  name: "Aki's Preparation for Soccer Match",
-  description:
-    "A dialogue where Aki's mother urges him to hurry up and prepare for his soccer match.",
-  speakers: [
-    {
-      words: [
-        { characters: [{ value: "ア" }, { value: "キ" }] },
-        { characters: [{ value: "の" }] },
-        { characters: [{ value: "母", kanaWriting: "はは" }] },
-      ],
-      translation: "Aki's Mother",
-    },
-    {
-      words: [{ characters: [{ value: "ア" }, { value: "キ" }] }],
-      translation: "Aki",
-    },
-  ],
-  phrases: [
-    {
-      speakerIndex: 0,
-      content: [
-        {
-          characters: [{ value: "も" }, { value: "う" }],
-          explanation:
-            "already; soon; again; more; strengthens expression of an emotion; filler word: なんか、もう、帰(かえ)ろうよ: Like, let's go home already?",
-        },
-        {
-          characters: [
-            { value: "試", kanaWriting: "し" },
-            { value: "合", kanaWriting: "あい" },
-          ],
-          explanation:
-            "game; match. Often used in sports contexts like soccer or baseball.",
-        },
-        {
-          characters: [
-            { value: "始", kanaWriting: "はじ" },
-            { value: "ま" },
-            { value: "る" },
-          ],
-          explanation: "to begin; to start. Often used for events or actions.",
-        },
-        {
-          characters: [{ value: "よ" }],
-          explanation:
-            "introduces new information; emphasizes a sentence; 朝(あさ)だよ！It's morning!",
-        },
-        { characters: [{ value: "！" }] },
-        {
-          characters: [
-            { value: "急", kanaWriting: "いそ" },
-            { value: "い" },
-            { value: "で" },
-          ],
-          explanation: "to hurry; to rush. Indicates urgency.",
-        },
-        {
-          characters: [
-            { value: "準", kanaWriting: "じゅん" },
-            { value: "備", kanaWriting: "び" },
-            { value: "し" },
-            { value: "て" },
-          ],
-          explanation:
-            "て-form of 準備する (to prepare). Indicates a command or request to take action.",
-        },
-        { characters: [{ value: "！" }] },
-      ],
-      translation: "The match is about to start! Hurry up and get ready!",
-    },
-    {
-      speakerIndex: 1,
-      content: [
-        {
-          characters: [{ value: "あっ" }],
-          explanation: "exclamation of realization or surprise.",
-        },
-        { characters: [{ value: "、" }] },
-        {
-          characters: [
-            { value: "分", kanaWriting: "わ" },
-            { value: "か" },
-            { value: "っ" },
-            { value: "た" },
-          ],
-          explanation:
-            "understood; got it. Casual expression of agreement or understanding.",
-        },
-        { characters: [{ value: "！" }] },
-        {
-          characters: [{ value: "す" }, { value: "ぐ" }],
-          explanation: "immediately; soon.",
-        },
-        { characters: [{ value: "に" }] },
-        {
-          characters: [{ value: "行", kanaWriting: "い" }, { value: "く" }],
-          explanation: "to go; to head toward. Common verb for movement.",
-        },
-        {
-          characters: [{ value: "よ" }],
-          explanation: "emphasizes a sentence; 朝(あさ)だよ！It's morning!",
-        },
-        { characters: [{ value: "。" }] },
-      ],
-      translation: "Ah, got it! I'll go right away!",
-    },
-    {
-      speakerIndex: 0,
-      content: [
-        {
-          characters: [{ value: "早", kanaWriting: "はや" }, { value: "く" }],
-          explanation: "quickly; hurry.",
-        },
-        {
-          characters: [
-            { value: "し" },
-            { value: "な" },
-            { value: "い" },
-            { value: "と" },
-          ],
-          explanation:
-            "if you don't...; expresses a conditional or consequence.",
-        },
-        {
-          characters: [
-            { value: "遅", kanaWriting: "おく" },
-            { value: "れ" },
-            { value: "る" },
-          ],
-          explanation: "to be late; to lag behind.",
-        },
-        {
-          characters: [{ value: "よ" }],
-          explanation: "emphasizes a sentence.",
-        },
-        { characters: [{ value: "。" }] },
-      ],
-      translation: "If you don't hurry, you'll be late!",
-    },
-    {
-      speakerIndex: 1,
-      content: [
-        {
-          characters: [{ value: "バ" }, { value: "ッ" }, { value: "グ" }],
-          explanation: "bag. Loanword from English.",
-        },
-        { characters: [{ value: "は" }] },
-        {
-          characters: [{ value: "ど" }, { value: "こ" }],
-          explanation: "where; location.",
-        },
-        { characters: [{ value: "だ" }] },
-        {
-          characters: [{ value: "っ" }, { value: "け" }],
-          explanation: "used to recall or confirm information.",
-        },
-        { characters: [{ value: "？" }] },
-        { characters: [{ value: "あ" }, { value: "、" }] },
-        {
-          characters: [
-            { value: "見", kanaWriting: "み" },
-            { value: "つ" },
-            { value: "け" },
-            { value: "た" },
-          ],
-          explanation: "found; discovered.",
-        },
-        { characters: [{ value: "！" }] },
-      ],
-      translation: "Where's my bag? Oh, found it!",
-    },
-    {
-      speakerIndex: 0,
-      content: [
-        {
-          characters: [{ value: "靴", kanaWriting: "くつ" }],
-          explanation: "shoes.",
-        },
-        { characters: [{ value: "は" }] },
-        {
-          characters: [{ value: "ちゃんと" }],
-          explanation: "properly; neatly; thoroughly.",
-        },
-        {
-          characters: [
-            { value: "履", kanaWriting: "は" },
-            { value: "い" },
-            { value: "た" },
-          ],
-          explanation: "worn; put on (shoes).",
-        },
-        { characters: [{ value: "？" }] },
-        {
-          characters: [{ value: "さ" }, { value: "あ" }],
-          explanation: "come on; let's go.",
-        },
-        {
-          characters: [
-            { value: "出", kanaWriting: "しゅつ" },
-            { value: "発", kanaWriting: "ぱつ" },
-          ],
-          explanation: "departure; leaving.",
-        },
-        {
-          characters: [{ value: "よ" }],
-          explanation: "emphasizes a sentence.",
-        },
-      ],
-      translation: "Did you put on your shoes properly? Let's go!",
-    },
-    {
-      speakerIndex: 1,
-      content: [
-        {
-          characters: [{ value: "うん" }],
-          explanation: "yeah; affirmative response.",
-        },
-        {
-          characters: [
-            { value: "準", kanaWriting: "じゅん" },
-            { value: "備", kanaWriting: "び" },
-            { value: "で" },
-            { value: "き" },
-            { value: "た" },
-          ],
-          explanation: "ready; prepared.",
-        },
-        { characters: [{ value: "！" }] },
-        {
-          characters: [
-            { value: "行", kanaWriting: "い" },
-            { value: "こ" },
-            { value: "う" },
-          ],
-          explanation: "let's go!",
-        },
-        { characters: [{ value: "！" }] },
-      ],
-      translation: "Yeah, I'm ready! Let's go!",
-    },
-  ],
-};
+function getRandomInt(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+const randomNumber = getRandomInt(20, 30);
