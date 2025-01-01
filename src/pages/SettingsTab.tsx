@@ -20,8 +20,9 @@ const SettingsTab: React.FC = () => {
     return [
       dialogueConfigStore.showSpeakers,
       dialogueConfigStore.showFurigana,
-      dialogueConfigStore.showHiragana,
+      // dialogueConfigStore.showHiragana,
       dialogueConfigStore.showTranslation,
+      dialogueConfigStore.showExplanations,
     ];
   };
 
@@ -30,6 +31,7 @@ const SettingsTab: React.FC = () => {
     dialogueConfigStore.setShowFurigana(value);
     dialogueConfigStore.setShowHiragana(value);
     dialogueConfigStore.setShowTranslation(value);
+    dialogueConfigStore.setShowExplanations(value);
   };
 
   return (
@@ -55,14 +57,14 @@ const SettingsTab: React.FC = () => {
             >
               Furigana
             </IonCheckbox>
-            <IonCheckbox
+            {/* <IonCheckbox
               checked={dialogueConfigStore.showHiragana}
               onIonChange={(x) =>
                 dialogueConfigStore.setShowHiragana(x.detail.checked)
               }
             >
               Hiragana
-            </IonCheckbox>
+            </IonCheckbox> */}
             <IonCheckbox
               checked={dialogueConfigStore.showTranslation}
               onIonChange={(x) =>
@@ -71,7 +73,14 @@ const SettingsTab: React.FC = () => {
             >
               Translations
             </IonCheckbox>
-
+            <IonCheckbox
+              checked={dialogueConfigStore.showExplanations}
+              onIonChange={(x) =>
+                dialogueConfigStore.setShowExplanations(x.detail.checked)
+              }
+            >
+              Words Explanations
+            </IonCheckbox>
             <div className="h-[1px] bg-gray-300" />
             <IonCheckbox
               indeterminate={isAtLeastOneButNotAllTrue(getTextFlags())}

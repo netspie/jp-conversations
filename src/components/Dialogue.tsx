@@ -1,5 +1,6 @@
 import {
   IonButton,
+  IonCheckbox,
   IonIcon,
   IonItem,
   IonLabel,
@@ -10,7 +11,7 @@ import {
 import "./Dialogue.css";
 import { DialogueDTO } from "../useCases/DialogueDTO";
 import Word from "../views/Word";
-import { play } from "ionicons/icons";
+import { heart, information, person, play, square } from "ionicons/icons";
 import ReactAudioPlayer from "react-audio-player";
 import { useDialogueConfigStore } from "../store/DialogueConfigStore";
 
@@ -18,11 +19,64 @@ export type DialogueProps = {
   content: DialogueDTO;
 };
 
+type IconToggleProps = {
+  icon?: string;
+  character?: string;
+  checked: boolean;
+  onChange: (value: boolean) => void;
+};
+
+function IconCheckbox(props: IconToggleProps) {
+  return (
+    <div className="flex items-center gap-2">
+      {props.character ? (
+        <IonText
+          className="font-bold ml-1 mt-[1px]"
+          color={props.checked ? "primary" : "disabled"}
+        >
+          {props.character}
+        </IonText>
+      ) : (
+        <IonIcon
+          icon={props.icon}
+          color={props.checked ? "primary" : "disabled"}
+        />
+      )}
+      <IonCheckbox
+        checked={props.checked}
+        onIonChange={(x) => props.onChange(x.detail.checked)}
+      />
+    </div>
+  );
+}
+
 function Dialogue(props: DialogueProps) {
   const dialogueConfigStore = useDialogueConfigStore();
 
   return (
     <div className="flex flex-col items-start gap-4">
+      <div className="flex gap-3">
+        <IconCheckbox
+          icon={person}
+          checked={dialogueConfigStore.showSpeakers}
+          onChange={dialogueConfigStore.setShowSpeakers}
+        />
+        <IconCheckbox
+          icon={information}
+          checked={dialogueConfigStore.showExplanations}
+          onChange={dialogueConfigStore.setShowExplanations}
+        />
+        <IconCheckbox
+          character={"あ"}
+          checked={dialogueConfigStore.showFurigana}
+          onChange={dialogueConfigStore.setShowFurigana}
+        />
+        <IconCheckbox
+          character={"EN"}
+          checked={dialogueConfigStore.showTranslation}
+          onChange={dialogueConfigStore.setShowTranslation}
+        />
+      </div>
       <div className="flex flex-col gap-2">
         <IonLabel className="font-bold uppercase text-lg text-left">
           Situation
@@ -95,9 +149,59 @@ function Dialogue(props: DialogueProps) {
                 </IonButton>
               </div>
               {dialogueConfigStore.showTranslation && (
-                <IonText className="w-full normal-case flex flex-wrap">
+                <IonText className="w-full normal-case flex flex-wrap text-sm text-gray-400 font-bold">
                   {phrase.translation}
                 </IonText>
+              )}
+              {/* EXPLANATIONS */}
+              <div>
+                {dialogueConfigStore.showExplanations &&
+                  phrase.content.map((word) => (
+                    <>
+                      {word.explanation && (
+                        <div className="flex-col">
+                          {!dialogueConfigStore.showFurigana && (<div className="h-2"></div>)}
+                          <div className="relative flex gap-2">
+                            <div className="flex">
+                              <div className="flex flex-col h-full mr-2">
+                                {dialogueConfigStore.showFurigana && (
+                                  <div className="h-[14px]"></div>
+                                )}
+                                <div className="h-[8px]"></div>
+                                <IonIcon icon={square} className="size-[4px]" />
+                              </div>
+                              <div className="flex">
+                                <Word
+                                  content={word}
+                                  config={{
+                                    showFurigana:
+                                      dialogueConfigStore.showFurigana,
+                                  }}
+                                />
+                              </div>
+                              <div className="flex flex-col">
+                                {dialogueConfigStore.showFurigana && (
+                                  <div className="h-[14px]"></div>
+                                )}
+                                <span className="mx-1 ml-2">-</span>
+                              </div>
+                            </div>
+                            <div className="flex flex-col">
+                              {dialogueConfigStore.showFurigana && (
+                                <div className="h-[14px]"></div>
+                              )}
+                              <IonText className="w-full normal-case flex flex-wrap m-0 p-0">
+                                {word.explanation}
+                              </IonText>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  ))}
+              </div>
+              {dialogueConfigStore.showExplanations && (
+                <div className="w-full h-[1px] bg-gray-300 mt-5 mb-2"></div>
               )}
             </div>
           </IonItem>
@@ -113,3 +217,12 @@ function Dialogue(props: DialogueProps) {
 }
 
 export default Dialogue;
+
+function containsValidCharacter(input: string): boolean {
+  // Check if the string length is 1 and is a special character
+  if (input.length === 1) {
+    const specialChars = /[^\w\s\u3040-\u30FF\u4E00-\u9FFF]/; // Any character that is not alphanumeric, space, or Japanese
+    return !specialChars.test(input);
+  }
+  return true; // For strings of length more than 1, consider them valid
+}

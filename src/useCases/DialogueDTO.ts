@@ -8,14 +8,13 @@ export type DialogueDTO = {
 
 export type PhraseDTO = {
   speakerIndex: number;
-  content: WordDTO[];
+  content: WordDefinitionDTO[];
   translation: string;
-  words: WordDefinitionDTO[];
 };
 
 export type SpeakerDTO = {
   words: WordDTO[];
-  translation: string
+  translation: string;
 };
 
 export type WordDTO = {
@@ -24,22 +23,10 @@ export type WordDTO = {
 
 export type WordDefinitionDTO = {
   characters: CharacterDTO[];
-  definition: DefinitionTextDTO;
+  explanation?: string;
 };
 
 export type CharacterDTO = {
   value: string;
   kanaWriting?: string;
-};
-
-export type DefinitionTextDTO = {
-  fragments: DefinitionTextFragmentDTO[];
-};
-
-export type DefinitionTextFragmentDTO = {
-  value: WordDTO[];
-};
-
-export type DialogueProps = {
-  content: DialogueDTO;
 };
