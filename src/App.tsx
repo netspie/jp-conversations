@@ -73,6 +73,7 @@ import "./theme/tailwind.css";
 import "./App.css";
 import SettingsPage from "./pages/SettingsPage";
 import { resetNav, useNavStore } from "./store/NavStore";
+import { DialoguePage } from "./pages/DialoguePage";
 
 setupIonicReact();
 
@@ -100,6 +101,9 @@ const App: React.FC = () => {
             </Route>
             <Route exact path="/dialogues">
               <DialoguesPage />
+            </Route>
+            <Route exact path="/dialogues/dialogue">
+               <DialoguePage dialogueId="123e4567-e89b-12d3-a456-426614174000" />
             </Route>
             <Route path="/profile">
               <ProfilePage />

@@ -7,33 +7,29 @@ import {
   IonLabel,
   IonList,
   IonNav,
-  IonNavLink,
   IonPage,
 } from "@ionic/react";
 import PageHeader from "./PageHeader";
 import PageContent from "./PageContent";
 import React, { useEffect, useRef, useState } from "react";
 import { DialogueSignatureDTO } from "../useCases/DialogueSignatureDTO";
-import { Icon } from "ionicons/dist/types/components/icon/icon";
-import { diamond, lockClosed } from "ionicons/icons";
-import SettingsPage from "./SettingsPage";
-import { DialoguePage } from "./DialoguePage";
+import { diamond } from "ionicons/icons";
 import { useNavStore } from "../store/NavStore";
+import { NavLink, useHistory } from "react-router-dom"
 
 type DialogueSignatureProps = {
   content: DialogueSignatureDTO;
 };
 
 function DialogueSignature(props: DialogueSignatureProps) {
+  const history = useHistory();
+  
   return (
-    <div className="flex relative w-full">
-      <IonNavLink
-        class="size-full rounded-md shadow-md"
+    <div className="relative flex w-full">
+      <IonButton
+        className="size-full rounded-md shadow-md"
         routerDirection="forward"
-        component={() => (
-          <DialoguePage dialogueId="123e4567-e89b-12d3-a456-426614174000" />
-        )}
-        style={{ background: "var(--ion-color-quaternary)" }}
+        style={{ '--background': "var(--ion-color-quaternary)" }}
       >
         <div className="flex flex-col gap-2 p-4">
           <IonLabel
@@ -50,7 +46,10 @@ function DialogueSignature(props: DialogueSignatureProps) {
             {props.content.wordsCount} Words
           </IonLabel>
         </div>
-      </IonNavLink>
+        <NavLink 
+          className="absolute size-full"
+          to="dialogues/dialogue" />
+      </IonButton>
       {!props.content.active && (
         <div className="absolute size-full flex justify-center items-center bg-[rgba(255,255,255,0.7)]">
           <IonButton>

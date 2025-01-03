@@ -15,13 +15,13 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
         <div className="absolute right-0 bottom-0 -translate-x-8 top-3 h-24 w-64 bg-white opacity-10"></div>
       </div> */}
       <IonToolbar
-        className="flex flex-col justify-center shadow-none h-12 md:h-14"
+        className="relative flex flex-col justify-center shadow-none h-12 md:h-14"
         style={{ "--border-width": "0", "--background": "white" }}
       >
-         <IonBackButton></IonBackButton>
         <IonTitle className="text-3xl font-bold uppercase text-center">
           {props.children}
         </IonTitle>
+        <IonBackButton className="absolute left-0 top-1/2 -translate-y-1/2"></IonBackButton>
       </IonToolbar>
     </IonHeader>
   );

@@ -10,6 +10,7 @@ import "./HomePage.css";
 import { useRef } from "react";
 import { caretBackSharp, caretForwardSharp } from "ionicons/icons";
 import PageContent from "./PageContent";
+import { Link } from "react-router-dom";
 
 const HorizontalList: React.FC = () => {
   const items = Array.from({ length: 10 }, (_, i) => `Card ${i + 1}`);
@@ -102,6 +103,7 @@ const HomePage: React.FC = () => {
             </p>
           </div>
           <HorizontalList />
+          <Link to="/dialogues/dialogue">GO</Link>
         </PageContent>
       </IonContent>
     </IonPage>

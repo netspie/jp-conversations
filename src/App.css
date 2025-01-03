@@ -7,7 +7,7 @@ ion-tab-button > ion-icon {
 }
 
 ion-tab-button:hover > ion-icon {
-  color: #e795b0;
+  color: var('--ion-color-primary');
 }
 
 ion-tab-button.tab-selected {
