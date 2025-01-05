@@ -1,11 +1,12 @@
-import { IonContent, IonPage } from "@ionic/react";
-import PageHeader from "./PageHeader";
+import { IonPage } from "@ionic/react";
+import IonxHeader from "./IonxHeader";
+import IonxContent from "./IonxContent";
 
 const ProfilePage: React.FC = () => {
   return (
     <IonPage>
-      <PageHeader>Profile</PageHeader>
-      <IonContent fullscreen></IonContent>
+      <IonxHeader>Profile</IonxHeader>
+      <IonxContent></IonxContent>
     </IonPage>
   );
 };

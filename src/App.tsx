@@ -3,8 +3,6 @@ import {
   IonApp,
   IonButton,
   IonIcon,
-  IonItemDivider,
-  IonLabel,
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
@@ -13,28 +11,11 @@ import {
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import {
-  albums,
-  albumsOutline,
-  albumsSharp,
-  book,
   chatbox,
-  chatboxOutline,
   diamond,
-  ellipse,
   grid,
   home,
-  homeOutline,
-  homeSharp,
-  list,
-  listCircle,
   person,
-  personOutline,
-  personSharp,
-  settings,
-  settingsOutline,
-  settingsSharp,
-  square,
-  triangle,
 } from "ionicons/icons";
 import HomePage from "./pages/HomePage";
 import DialoguesPage from "./pages/DialoguesPage";
@@ -71,21 +52,17 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import "./theme/tailwind.css";
 import "./App.css";
-import SettingsPage from "./pages/SettingsPage";
-import { resetNav, useNavStore } from "./store/NavStore";
-import { DialoguePage } from "./pages/DialoguePage";
+import DialoguePage from "./pages/DialoguePage";
 
 setupIonicReact();
 
 const App: React.FC = () => {
-  const navStore = useNavStore();
-
   return (
     <IonApp>
       <IonReactRouter>
         <IonTabs>
           <IonButton
-            href="/tab1"
+            href="/"
             className="hidden w-14 h-14 md:block m-0 rounded-none bg-transparent"
             style={{ "--border-radius": "0" }}
           >
@@ -102,15 +79,18 @@ const App: React.FC = () => {
             <Route exact path="/dialogues">
               <DialoguesPage />
             </Route>
-            <Route exact path="/dialogues/dialogue">
-               <DialoguePage dialogueId="123e4567-e89b-12d3-a456-426614174000" />
-            </Route>
-            <Route path="/profile">
+            {/* <Route exact path="/dialogues/:id">
+              <IonNav root={DialoguePage} />
+            </Route> */}
+            <Route path={`/dialogues/:id`} component={DialoguePage} />
+            {/* <Route path="/profile">
+              <IonNav root={() => <HomePage />} />
               <ProfilePage />
             </Route>
             <Route path="/premium">
+              <IonNav root={() => <HomePage />} />
               <SettingsPage />
-            </Route>
+            </Route> */}
             {/* <Route path="/settings">
           </Route> */}
             <Route exact path="/">
@@ -126,7 +106,6 @@ const App: React.FC = () => {
               tab="home"
               href="/home"
               className="flex-1 md:max-h-10"
-              onClick={() => resetNav(navStore)}
             >
               <IonIcon aria-hidden="true" icon={home} />
             </IonTabButton>
@@ -134,7 +113,6 @@ const App: React.FC = () => {
               tab="dialogues"
               href="/dialogues"
               className="flex-1 md:max-h-10"
-              onClick={() => resetNav(navStore)}
             >
               <IonIcon aria-hidden="true" icon={chatbox} />
             </IonTabButton>
@@ -142,7 +120,6 @@ const App: React.FC = () => {
               tab="profile"
               href="/profile"
               className="flex-1 md:max-h-10"
-              onClick={() => resetNav(navStore)}
             >
               <IonIcon aria-hidden="true" icon={person} />
             </IonTabButton>
@@ -150,7 +127,6 @@ const App: React.FC = () => {
               tab="premium"
               href="/premium"
               className="flex-1 md:max-h-10"
-              onClick={() => resetNav(navStore)}
             >
               <IonIcon aria-hidden="true" icon={diamond} />
             </IonTabButton>

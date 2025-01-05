@@ -1,35 +1,29 @@
 import {
-  IonBackButton,
   IonButton,
-  IonContent,
   IonIcon,
   IonItem,
   IonLabel,
   IonList,
-  IonNav,
   IonPage,
 } from "@ionic/react";
-import PageHeader from "./PageHeader";
-import PageContent from "./PageContent";
+import IonxHeader from "./IonxHeader";
 import React, { useEffect, useRef, useState } from "react";
 import { DialogueSignatureDTO } from "../useCases/DialogueSignatureDTO";
 import { diamond } from "ionicons/icons";
-import { useNavStore } from "../store/NavStore";
-import { NavLink, useHistory } from "react-router-dom"
+import IonxContent from "./IonxContent";
 
 type DialogueSignatureProps = {
   content: DialogueSignatureDTO;
 };
 
-function DialogueSignature(props: DialogueSignatureProps) {
-  const history = useHistory();
-  
+function DialogueButton(props: DialogueSignatureProps) {
   return (
     <div className="relative flex w-full">
       <IonButton
         className="size-full rounded-md shadow-md"
         routerDirection="forward"
-        style={{ '--background': "var(--ion-color-quaternary)" }}
+        style={{ "--background": "var(--ion-color-quaternary)" }}
+        // onClick={() => navStore.nav?.push(`/dialogues/dialogue`)}
       >
         <div className="flex flex-col gap-2 p-4">
           <IonLabel
@@ -46,9 +40,6 @@ function DialogueSignature(props: DialogueSignatureProps) {
             {props.content.wordsCount} Words
           </IonLabel>
         </div>
-        <NavLink 
-          className="absolute size-full"
-          to="dialogues/dialogue" />
       </IonButton>
       {!props.content.active && (
         <div className="absolute size-full flex justify-center items-center bg-[rgba(255,255,255,0.7)]">
@@ -75,7 +66,11 @@ function DialogueSignature(props: DialogueSignatureProps) {
   );
 }
 
-function DialogueList() {
+type DialogueListProps = {
+  nav?: HTMLIonNavElement
+}
+
+function DialogueList(props: DialogueListProps) {
   const [dialogues, setDialogues] = useState<DialogueSignatureDTO[]>();
 
   useEffect(() => {
@@ -109,8 +104,9 @@ function DialogueList() {
               "--min-height": "0",
             }}
             className="p-0 m-0"
+            routerLink={`dialogues/${dialogue.id}`}
           >
-            <DialogueSignature content={dialogue} />
+            <DialogueButton content={dialogue} />
           </IonItem>
         ))}
       </IonList>
@@ -119,29 +115,15 @@ function DialogueList() {
 }
 
 const DialoguesPage: React.FC = () => {
-  const navRef = useRef<HTMLIonNavElement>(null);
-
-  const navStore = useNavStore();
-
-  useEffect(() => {
-    navStore.setNav(navRef.current ? navRef.current : undefined);
-  }, [navRef]);
-
+  
   return (
-    <IonNav
-      ref={navRef}
-      root={() => (
-        <IonPage>
-          <PageHeader>Dialogues</PageHeader>
-          <IonContent fullscreen>
-            <PageContent>
-              <DialogueList />
-              {/* <Dialogue content={dialogue} /> */}
-            </PageContent>
-          </IonContent>
-        </IonPage>
-      )}
-    ></IonNav>
+    <IonPage>
+      <IonxHeader>Dialogues</IonxHeader>
+      <IonxContent>
+        <DialogueList />
+        {/* <Dialogue content={dialogue} /> */}
+      </IonxContent>
+    </IonPage>
   );
 };
 

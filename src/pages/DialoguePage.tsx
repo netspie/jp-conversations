@@ -1,15 +1,16 @@
 import { IonContent, IonPage } from "@ionic/react";
-import PageHeader from "./PageHeader";
-import PageContent from "./PageContent";
+import IonxHeader from "./IonxHeader";
+import PageContent from "./IonxContent";
 import Dialogue from "../components/Dialogue";
 import { DialogueDTO } from "../useCases/DialogueDTO";
 import { useEffect, useState } from "react";
+import { RouteComponentProps } from "react-router";
 
-export type DialoguePageProps = {
-  dialogueId: string;
-};
+export type DialogueComponentProps = {
+  dialogueId: string
+}
 
-export function DialoguePage(props: DialoguePageProps) {
+export const DialogueComponent: React.FC<DialogueComponentProps> = (props) => {
   const [dialogue, setDialogue] = useState<DialogueDTO>();
 
   useEffect(() => {
@@ -22,11 +23,27 @@ export function DialoguePage(props: DialoguePageProps) {
   }
 
   return (
+    dialogue && <Dialogue content={dialogue} />
+  )
+}
+
+interface DialoguePageProps
+  extends RouteComponentProps<{
+    id: string;
+  }> {}
+
+
+const DialoguePage: React.FC<DialoguePageProps> = ({ match }) => {
+  return (
     <IonPage>
-      <PageHeader>Dialogues</PageHeader>
+      <IonxHeader>Dialogues</IonxHeader>
       <IonContent fullscreen>
-        <PageContent>{dialogue && <Dialogue content={dialogue} />}</PageContent>
+        <PageContent>
+          <DialogueComponent dialogueId={match.params.id} />
+        </PageContent>
       </IonContent>
     </IonPage>
   );
 }
+
+export default DialoguePage;
