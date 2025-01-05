@@ -1,4 +1,4 @@
-import { CharacterDTO, WordDTO } from "../useCases/DialogueDTO";
+import { CharacterDTO, WordDTO } from "./DialogueDTO";
 
 export type WordProps = {
   content: WordDTO;

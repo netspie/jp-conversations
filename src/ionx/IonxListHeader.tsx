@@ -5,7 +5,7 @@ export type ListHeaderProps = {
   children: string;
 };
 
-function ListHeader(props: ListHeaderProps) {
+export function IonxListHeader(props: ListHeaderProps) {
   return (
     <IonListHeader className="flex flex-col items-start relative p-0 m-0">
       <IonLabel

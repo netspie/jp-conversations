@@ -9,10 +9,10 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import { useState } from "react";
-import { useDialogueConfigStore } from "../store/DialogueConfigStore";
-import IonxHeader from "./IonxHeader";
-import PageContent from "./IonxContent";
-import IonxContent from "./IonxContent";
+import { useDialogueConfigStore } from "../dialogues/DialogueConfigStore";
+import IonxHeader from "../ionx/IonxHeader";
+import PageContent from "../ionx/IonxContent";
+import IonxContent from "../ionx/IonxContent";
 
 const SettingsPage: React.FC = () => {
   const dialogueConfigStore = useDialogueConfigStore();

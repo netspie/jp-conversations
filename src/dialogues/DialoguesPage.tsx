@@ -6,11 +6,11 @@ import {
   IonList,
   IonPage,
 } from "@ionic/react";
-import IonxHeader from "./IonxHeader";
+import IonxHeader from "../ionx/IonxHeader";
 import React, { useEffect, useRef, useState } from "react";
-import { DialogueSignatureDTO } from "../useCases/DialogueSignatureDTO";
+import { DialogueSignatureDTO } from "./DialogueSignatureDTO";
 import { diamond } from "ionicons/icons";
-import IonxContent from "./IonxContent";
+import IonxContent from "../ionx/IonxContent";
 
 type DialogueSignatureProps = {
   content: DialogueSignatureDTO;

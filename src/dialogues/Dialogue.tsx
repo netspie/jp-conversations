@@ -9,11 +9,11 @@ import {
   IonText,
 } from "@ionic/react";
 import "./Dialogue.css";
-import { DialogueDTO } from "../useCases/DialogueDTO";
-import Word from "../views/Word";
+import { DialogueDTO } from "./DialogueDTO";
+import Word from "./Word";
 import { heart, information, person, play, square } from "ionicons/icons";
 import ReactAudioPlayer from "react-audio-player";
-import { useDialogueConfigStore } from "../store/DialogueConfigStore";
+import { useDialogueConfigStore } from "./DialogueConfigStore";
 import { forceUpdate } from "ionicons/dist/types/stencil-public-runtime";
 import { useState } from "react";
 

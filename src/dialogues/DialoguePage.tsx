@@ -1,8 +1,8 @@
 import { IonContent, IonPage } from "@ionic/react";
-import IonxHeader from "./IonxHeader";
-import PageContent from "./IonxContent";
-import Dialogue from "../components/Dialogue";
-import { DialogueDTO } from "../useCases/DialogueDTO";
+import IonxHeader from "../ionx/IonxHeader";
+import PageContent from "../ionx/IonxContent";
+import Dialogue from "./Dialogue";
+import { DialogueDTO } from "./DialogueDTO";
 import { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router";
 

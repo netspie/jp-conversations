@@ -16,10 +16,10 @@ import {
   grid,
   home,
   person,
+  settingsOutline,
 } from "ionicons/icons";
-import HomePage from "./pages/HomePage";
-import DialoguesPage from "./pages/DialoguesPage";
-import ProfilePage from "./pages/ProfilePage";
+import HomePage from "./home/HomePage";
+import DialoguesPage from "./dialogues/DialoguesPage";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -52,7 +52,8 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import "./theme/tailwind.css";
 import "./App.css";
-import DialoguePage from "./pages/DialoguePage";
+import DialoguePage from "./dialogues/DialoguePage";
+import SettingsPage from "./settings/SettingsPage";
 
 setupIonicReact();
 
@@ -61,38 +62,23 @@ const App: React.FC = () => {
     <IonApp>
       <IonReactRouter>
         <IonTabs>
-          <IonButton
-            href="/"
-            className="hidden w-14 h-14 md:block m-0 rounded-none bg-transparent"
-            style={{ "--border-radius": "0" }}
-          >
-            <IonIcon
-              slot="icon-only"
-              icon={grid}
-              className="text-gray-50 w-8 h-8"
-            />
-          </IonButton>
+          <div className="flex w-14 h-14 items-center justify-center bg-white">
+            <IonButton
+              href="/"
+              className="hidden w-12 h-12 md:block m-0 rounded-none bg-transparent"
+            >
+              <IonIcon
+                slot="icon-only"
+                icon={grid}
+                className="text-gray-50 w-8 h-8"
+              />
+            </IonButton>
+          </div>
           <IonRouterOutlet className="md:left-14 h-[100vh]">
-            <Route exact path="/home">
-              <HomePage />
-            </Route>
-            <Route exact path="/dialogues">
-              <DialoguesPage />
-            </Route>
-            {/* <Route exact path="/dialogues/:id">
-              <IonNav root={DialoguePage} />
-            </Route> */}
+            <Route exact path="/home" component={HomePage} />
+            <Route exact path="/dialogues" component={DialoguesPage} />
             <Route path={`/dialogues/:id`} component={DialoguePage} />
-            {/* <Route path="/profile">
-              <IonNav root={() => <HomePage />} />
-              <ProfilePage />
-            </Route>
-            <Route path="/premium">
-              <IonNav root={() => <HomePage />} />
-              <SettingsPage />
-            </Route> */}
-            {/* <Route path="/settings">
-          </Route> */}
+            <Route path="/settings" component={SettingsPage} />
             <Route exact path="/">
               <Redirect to="/home" />
             </Route>
@@ -117,25 +103,19 @@ const App: React.FC = () => {
               <IonIcon aria-hidden="true" icon={chatbox} />
             </IonTabButton>
             <IonTabButton
-              tab="profile"
-              href="/profile"
+              tab="settings"
+              href="/settings"
               className="flex-1 md:max-h-10"
             >
-              <IonIcon aria-hidden="true" icon={person} />
+              <IonIcon aria-hidden="true" icon={settingsOutline} />
             </IonTabButton>
-            <IonTabButton
+            {/* <IonTabButton
               tab="premium"
               href="/premium"
               className="flex-1 md:max-h-10"
             >
               <IonIcon aria-hidden="true" icon={diamond} />
-            </IonTabButton>
-            {/* <IonTabButton tab="tab3" href="/tab3" className="flex-1 md:max-h-10">
-            <IonIcon aria-hidden="true" icon={personOutline} />
-          </IonTabButton>
-          <IonTabButton tab="tab4" href="/tab4" className="flex-1 md:max-h-10">
-            <IonIcon aria-hidden="true" icon={settingsOutline} />
-          </IonTabButton> */}
+            </IonTabButton> */}
           </IonTabBar>
         </IonTabs>
       </IonReactRouter>
