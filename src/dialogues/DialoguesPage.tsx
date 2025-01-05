@@ -118,7 +118,7 @@ const DialoguesPage: React.FC = () => {
   
   return (
     <IonPage>
-      <IonxHeader>Dialogues</IonxHeader>
+      <IonxHeader>CONVERSATIONS</IonxHeader>
       <IonxContent>
         <DialogueList />
         {/* <Dialogue content={dialogue} /> */}

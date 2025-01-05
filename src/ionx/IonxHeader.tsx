@@ -23,7 +23,7 @@ const IonxHeader: React.FC<PageHeaderProps> = (props) => {
         className="relative flex flex-col justify-center shadow-none h-12 md:h-14"
         style={{ "--border-width": "0", "--background": "white" }}
       >
-        <IonTitle className="text-3xl font-bold uppercase text-center">
+        <IonTitle className="text-3xl font-bold uppercase text-center" color="primary">
           {props.children}
         </IonTitle>
         <IonxBackButton className="absolute left-2 top-1/2 -translate-y-1/2" />

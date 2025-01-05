@@ -75,12 +75,12 @@ const App: React.FC = () => {
             </IonButton>
           </div>
           <IonRouterOutlet className="md:left-14 h-[100vh]">
-            <Route exact path="/home" component={HomePage} />
+            {/* <Route exact path="/home" component={DialoguesPage} /> */}
             <Route exact path="/dialogues" component={DialoguesPage} />
             <Route path={`/dialogues/:id`} component={DialoguePage} />
             <Route path="/settings" component={SettingsPage} />
             <Route exact path="/">
-              <Redirect to="/home" />
+              <Redirect to="/dialogues" />
             </Route>
           </IonRouterOutlet>
           <IonTabBar
@@ -88,13 +88,13 @@ const App: React.FC = () => {
             className="h-12 md:mt-14 md:pt-2 md:flex-col md:w-14 md:h-full md:gap-4"
           >
             <div className="absolute w-[1px] h-[60%] bg-white"></div>
-            <IonTabButton
+            {/* <IonTabButton
               tab="home"
               href="/home"
               className="flex-1 md:max-h-10"
             >
               <IonIcon aria-hidden="true" icon={home} />
-            </IonTabButton>
+            </IonTabButton> */}
             <IonTabButton
               tab="dialogues"
               href="/dialogues"
