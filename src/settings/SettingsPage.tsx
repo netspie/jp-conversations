@@ -1,17 +1,10 @@
 import {
   IonCheckbox,
-  IonContent,
-  IonHeader,
-  IonItemDivider,
   IonLabel,
   IonPage,
-  IonTitle,
-  IonToolbar,
 } from "@ionic/react";
-import { useState } from "react";
 import { useDialogueConfigStore } from "../dialogues/DialogueConfigStore";
 import IonxHeader from "../ionx/IonxHeader";
-import PageContent from "../ionx/IonxContent";
 import IonxContent from "../ionx/IonxContent";
 
 const SettingsPage: React.FC = () => {

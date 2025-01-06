@@ -14,11 +14,8 @@ import {
   chatbox,
   diamond,
   grid,
-  home,
-  person,
   settingsOutline,
 } from "ionicons/icons";
-import HomePage from "./home/HomePage";
 import DialoguesPage from "./dialogues/DialoguesPage";
 
 /* Core CSS required for Ionic components to work properly */
@@ -54,6 +51,7 @@ import "./theme/tailwind.css";
 import "./App.css";
 import DialoguePage from "./dialogues/DialoguePage";
 import SettingsPage from "./settings/SettingsPage";
+import PremiumPage from "./premium/PremiumPage";
 
 setupIonicReact();
 
@@ -79,6 +77,7 @@ const App: React.FC = () => {
             <Route exact path="/dialogues" component={DialoguesPage} />
             <Route path={`/dialogues/:id`} component={DialoguePage} />
             <Route path="/settings" component={SettingsPage} />
+            <Route path="/premium" component={PremiumPage} />
             <Route exact path="/">
               <Redirect to="/dialogues" />
             </Route>
@@ -109,13 +108,13 @@ const App: React.FC = () => {
             >
               <IonIcon aria-hidden="true" icon={settingsOutline} />
             </IonTabButton>
-            {/* <IonTabButton
+            <IonTabButton
               tab="premium"
               href="/premium"
               className="flex-1 md:max-h-10"
             >
               <IonIcon aria-hidden="true" icon={diamond} />
-            </IonTabButton> */}
+            </IonTabButton>
           </IonTabBar>
         </IonTabs>
       </IonReactRouter>
